@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bond — Creator campaign launchpad</title>
+<meta name="description" content="Meet Bond. Launch a pump.fun coin and route its creator fees into marketing and UGC creator campaigns, on Solana.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='18' fill='%2311131a'/><g fill='none' stroke='%23fff' stroke-width='6'><circle cx='25' cy='32' r='11'/><circle cx='39' cy='32' r='11'/></g><path d='M27.66 21.33A11 11 0 0 1 35.05 27.53' fill='none' stroke='%2311131a' stroke-width='9'/><path d='M26.15 21.06A11 11 0 0 1 35.57 28.97' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F5F7; --bg-2:#ECEEF1; --card:#FFFFFF; --ink:#0E1015; --ink-2:#3A3F4A; --mute:#7A808C;
+  --line:#E2E4E8; --line-2:#D3D6DC; --chrome:linear-gradient(135deg,#ffffff 0%,#e9ebef 35%,#c9cdd4 60%,#f6f7f9 100%);
+  --good:#12A26B; --live:#16C784;
+  --sans:'Inter Tight',ui-sans-serif,system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --r:22px; --r-s:14px;
+  --shadow:0 1px 1px rgba(14,16,21,.04),0 10px 30px -12px rgba(14,16,21,.16),0 30px 60px -30px rgba(14,16,21,.18);
+  --shadow-lg:0 2px 2px rgba(14,16,21,.04),0 30px 80px -30px rgba(14,16,21,.35);
+  --ease:cubic-bezier(.2,.75,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);padding:7px 12px 7px 9px;border:1px solid var(--line-2);border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 4px rgba(22,199,132,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(22,199,132,0)}}
+h1,h2,h3{margin:0;letter-spacing:-.04em;line-height:.95;font-weight:800}
+.h2{font-size:clamp(2.2rem,5.4vw,4.4rem);text-wrap:balance}
+.sub{color:var(--ink-2);font-size:1.08rem;max-width:56ch;margin:18px 0 0}
+.grad{background:linear-gradient(180deg,#0E1015 30%,#6b717d 110%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chrome-text{background:linear-gradient(100deg,#0E1015 0%,#5c626e 30%,#c3c7ce 48%,#5c626e 62%,#0E1015 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s var(--ease) infinite}
+@keyframes sheen{0%{background-position:100% 0}60%,100%{background-position:-20% 0}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:12px 22px;font-weight:600;font-size:.95rem;border:1px solid var(--line-2);background:#fff;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s;white-space:nowrap;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 1px 2px rgba(14,16,21,.06)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 24px -10px rgba(14,16,21,.3)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.dark{background:linear-gradient(180deg,#2a2e37,#0E1015);color:#fff;border-color:#0E1015;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 8px 20px -8px rgba(14,16,21,.5)}
+.btn.lg{padding:16px 28px;font-size:1.02rem}
+.btn svg{width:16px;height:16px}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+
+/* nav */
+.nav{position:fixed;inset:14px 0 auto;z-index:50;pointer-events:none}
+.nav-in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 10px 0 20px;border-radius:999px;background:rgba(255,255,255,.62);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.9);box-shadow:0 10px 30px -18px rgba(14,16,21,.35)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.35rem;letter-spacing:-.05em}
+.logo{width:32px;height:32px;flex:none;display:block;filter:drop-shadow(0 4px 8px rgba(14,16,21,.25))}
+section[id],main[id]{scroll-margin-top:90px}
+.links{display:flex;gap:4px}
+.links a{padding:8px 14px;border-radius:999px;font-size:.92rem;color:var(--ink-2);transition:background .25s,color .25s}
+.links a:hover{background:rgba(14,16,21,.06);color:var(--ink)}
+.nav-r{display:flex;gap:8px;align-items:center}
+@media (max-width:900px){.links{display:none}}
+@media (max-width:480px){.nav-r .btn:not(.dark){display:none}.nav-in{padding-left:14px}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 70% 45%,#ffffff 0%,rgba(255,255,255,0) 70%),radial-gradient(40% 40% at 15% 85%,#e7e9ed 0%,rgba(231,233,237,0) 70%);pointer-events:none}
+.grid-floor{position:absolute;left:-20%;right:-20%;bottom:-6%;height:55%;background-image:linear-gradient(rgba(14,16,21,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(14,16,21,.07) 1px,transparent 1px);background-size:64px 64px;transform:perspective(700px) rotateX(62deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 10%,transparent 85%);-webkit-mask-image:linear-gradient(to top,#000 10%,transparent 85%);animation:floor 14s linear infinite;pointer-events:none}
+@keyframes floor{to{background-position:0 64px,0 0}}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.hero-in{position:relative;z-index:2;width:100%;pointer-events:none}
+.hero-copy{max-width:640px;pointer-events:auto}
+.hero h1{font-size:clamp(3.2rem,9vw,7.8rem);margin-top:22px;letter-spacing:-.06em;line-height:.88}
+.hero .sub{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:44ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:46px}
+.stat{padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.66);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.95);box-shadow:var(--shadow);min-width:140px}
+.stat b{display:block;font-size:1.5rem;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--mute)}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-hint i{width:22px;height:36px;border:1.5px solid var(--line-2);border-radius:12px;position:relative}
+.scroll-hint i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:var(--ink-2);transform:translateX(-50%);animation:wheel 1.8s infinite}
+@keyframes wheel{60%{transform:translate(-50%,10px);opacity:0}100%{opacity:0}}
+@media (max-width:820px){
+  .hero{align-items:flex-end;padding-top:46vh}
+  #gl{height:62%}
+  .hero-stats .stat{min-width:0;flex:1}
+  .scroll-hint{display:none}
+}
+
+/* ticker */
+.ticker{border-block:1px solid var(--line);background:#fff;overflow:hidden;position:relative}
+.ticker-track{display:flex;width:max-content;animation:marquee 40s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.tick{display:flex;align-items:center;gap:10px;padding:16px 26px;border-right:1px solid var(--line);font-size:.9rem;white-space:nowrap}
+.tick .av{width:24px;height:24px;border-radius:50%;flex:none}
+.tick b{font-weight:700}
+.up{color:var(--good);font-family:var(--mono);font-size:.8rem}
+
+/* sections */
+section.sec{padding:clamp(80px,12vw,150px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:54px}
+.sec-head .eyebrow{margin-bottom:22px}
+.sec-head>*{min-width:0;max-width:100%}
+.reveal{transform:translateY(24px);transition:transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1200px}
+.step{position:relative;background:var(--card);border-radius:var(--r);padding:30px;min-height:360px;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;transform-style:preserve-3d;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.step .n{font-family:var(--mono);font-size:.75rem;color:var(--mute)}
+.step h3{font-size:1.75rem;margin-top:auto}
+.step p{color:var(--ink-2);margin:12px 0 0;font-size:.98rem}
+.step .art{position:absolute;top:22px;right:22px;left:22px;height:170px;display:grid;place-items:center;transform:translateZ(40px)}
+.cube{width:86px;height:86px;position:relative;transform-style:preserve-3d;animation:spin 12s linear infinite}
+.cube span{position:absolute;inset:0;border:1px solid var(--line-2);background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(220,223,228,.85));box-shadow:inset 0 0 20px rgba(255,255,255,.8)}
+.cube span:nth-child(1){transform:translateZ(43px)}
+.cube span:nth-child(2){transform:rotateY(180deg) translateZ(43px)}
+.cube span:nth-child(3){transform:rotateY(90deg) translateZ(43px)}
+.cube span:nth-child(4){transform:rotateY(-90deg) translateZ(43px)}
+.cube span:nth-child(5){transform:rotateX(90deg) translateZ(43px);background:linear-gradient(135deg,#fff,#f0f1f3)}
+.cube span:nth-child(6){transform:rotateX(-90deg) translateZ(43px);background:#cfd2d8}
+@keyframes spin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+.flow{display:flex;align-items:center;gap:10px}
+.flow .coin3{width:62px;height:62px;border-radius:50%;background:var(--chrome);border:1px solid var(--line-2);box-shadow:inset 0 -6px 12px rgba(0,0,0,.1),inset 0 3px 4px #fff,0 12px 20px -10px rgba(0,0,0,.35);display:grid;place-items:center;font-weight:900;font-size:1.3rem}
+.flow .pipe{width:70px;height:6px;border-radius:3px;background:repeating-linear-gradient(90deg,#0E1015 0 8px,transparent 8px 16px);background-size:32px 6px;animation:pipe 1s linear infinite;opacity:.6}
+@keyframes pipe{to{background-position:32px 0}}
+.flow .vault{display:grid;gap:5px}
+.flow .vault i{display:block;height:14px;border-radius:5px;background:linear-gradient(90deg,#0E1015,#4a505c);width:70px}
+.flow .vault i:nth-child(2){width:46px;background:linear-gradient(90deg,#8d939e,#b9bdc5)}
+.flow .vault i:nth-child(3){width:24px;background:#d9dce1}
+.phones{display:flex;gap:10px;align-items:flex-end}
+.phone{width:54px;height:96px;border-radius:12px;border:1.5px solid var(--ink);background:linear-gradient(160deg,#fff,#e6e8ec);position:relative;overflow:hidden;animation:bob 3s ease-in-out infinite}
+.phone:nth-child(2){height:112px;animation-delay:-1s}
+.phone:nth-child(3){animation-delay:-2s}
+.phone::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:.8rem;color:var(--ink-2)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media (max-width:900px){.steps{grid-template-columns:1fr}.step{min-height:320px}}
+
+/* launch */
+.launch{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:clamp(20px,3vw,34px)}
+.field{display:grid;gap:8px;margin-bottom:18px}
+.field label{font-size:.85rem;font-weight:600;color:var(--ink-2)}
+.field .hint{font-size:.8rem;color:var(--mute)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.input{width:100%;padding:13px 15px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg);transition:border-color .2s,background .2s,box-shadow .2s;outline:none}
+.input:focus{border-color:var(--ink);background:#fff;box-shadow:0 0 0 4px rgba(14,16,21,.06)}
+textarea.input{resize:vertical;min-height:84px}
+.drop{display:flex;align-items:center;gap:14px;padding:12px;border:1.5px dashed var(--line-2);border-radius:14px;cursor:pointer;transition:border-color .2s,background .2s}
+.drop:hover{border-color:var(--ink);background:var(--bg)}
+.drop .thumb{width:54px;height:54px;border-radius:12px;background:var(--bg-2) center/cover;display:grid;place-items:center;color:var(--mute);flex:none}
+.split{margin:6px 0 20px}
+.split-bar{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--bg-2);margin:12px 0 18px}
+.split-bar span{transition:width .35s var(--ease)}
+.split-bar .s1{background:linear-gradient(90deg,#0E1015,#3c414c)}
+.split-bar .s2{background:linear-gradient(90deg,#8a909b,#b0b5be)}
+.split-bar .s3{background:#dcdfe4}
+.sl{display:grid;grid-template-columns:14px 1fr auto;align-items:center;gap:12px;margin-bottom:12px}
+.sl i{width:12px;height:12px;border-radius:4px}
+.sl b{font-family:var(--mono);font-size:.85rem;min-width:3.4em;text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:var(--line-2);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--chrome);border:1.5px solid var(--ink);box-shadow:0 3px 8px rgba(0,0,0,.2);cursor:grab}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#f1f2f4;border:1.5px solid var(--ink);cursor:grab}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);background:#fff;font-size:.86rem;transition:all .2s}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.preview-wrap{position:sticky;top:96px;perspective:1100px}
+.tok{border-radius:26px;padding:24px;background:linear-gradient(160deg,#ffffff 0%,#f1f2f5 55%,#e2e5ea 100%);border:1px solid #fff;box-shadow:var(--shadow-lg),inset 0 1px 0 #fff;transform-style:preserve-3d;transition:transform .2s ease-out;position:relative;overflow:hidden}
+.tok::after{content:"";position:absolute;inset:-50%;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.9),transparent 35%);pointer-events:none;mix-blend-mode:soft-light}
+.tok-top{display:flex;gap:16px;align-items:center;transform:translateZ(30px)}
+.tok-img{width:76px;height:76px;border-radius:20px;background:var(--chrome) center/cover;border:1px solid var(--line-2);display:grid;place-items:center;font-size:2rem;font-weight:900;flex:none;box-shadow:0 14px 24px -12px rgba(0,0,0,.35)}
+.tok-name{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;line-height:1.05;word-break:break-word}
+.tok-tk{font-family:var(--mono);color:var(--mute);font-size:.85rem}
+.tok-desc{color:var(--ink-2);margin:18px 0;font-size:.95rem;min-height:3em;transform:translateZ(20px)}
+.tok-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;transform:translateZ(24px)}
+.tok-cell{background:rgba(255,255,255,.75);border:1px solid #fff;border-radius:14px;padding:12px 14px}
+.tok-cell small{display:block;color:var(--mute);font-size:.75rem}
+.tok-cell b{font-size:1.1rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bonding{margin-top:16px;transform:translateZ(18px)}
+.bonding .bar{height:8px;border-radius:4px;background:#fff;overflow:hidden;margin-top:8px;border:1px solid var(--line)}
+.bonding .bar i{display:block;height:100%;width:3%;background:linear-gradient(90deg,#0E1015,#8d939e);transition:width .6s var(--ease)}
+.note{font-size:.8rem;color:var(--mute);margin-top:14px;line-height:1.5}
+@media (max-width:960px){.launch{grid-template-columns:1fr}.preview-wrap{position:relative;top:0;order:-1}}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+
+/* campaigns */
+.tabs{display:flex;scrollbar-width:none;gap:6px;padding:5px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto;max-width:100%}
+.tab{padding:9px 16px;border-radius:999px;border:0;background:transparent;font-size:.9rem;font-weight:500;color:var(--ink-2);white-space:nowrap}
+.tab[aria-selected=true]{background:var(--ink);color:#fff}
+.camps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1200px}
+.camp{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .4s var(--ease);display:flex;flex-direction:column;gap:16px}
+.camp:hover{box-shadow:var(--shadow-lg)}
+.camp-top{display:flex;align-items:center;gap:12px;transform:translateZ(24px)}
+.camp-av{width:46px;height:46px;border-radius:14px;flex:none;display:grid;place-items:center;font-weight:900;color:#fff;font-size:1.05rem;box-shadow:inset 0 -6px 12px rgba(0,0,0,.18),inset 0 2px 3px rgba(255,255,255,.4)}
+.camp-top h3{font-size:1.15rem;letter-spacing:-.03em;line-height:1.1}
+.camp-top .mono{font-size:.7rem}
+.badge{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);white-space:nowrap}
+.badge.live{color:var(--good);border-color:rgba(18,162,107,.25);background:rgba(18,162,107,.07)}
+.camp p{margin:0;color:var(--ink-2);font-size:.92rem;transform:translateZ(14px)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:translateZ(18px)}
+.kv div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.kv small{display:block;color:var(--mute);font-size:.7rem}
+.kv b{font-size:.98rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.prog{transform:translateZ(14px)}
+.prog .bar{height:6px;border-radius:3px;background:var(--bg-2);overflow:hidden;margin-top:7px}
+.prog .bar i{display:block;height:100%;background:linear-gradient(90deg,#0E1015,#7f8591);border-radius:3px}
+.prog .lbl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mute)}
+.camp .btn{width:100%;transform:translateZ(20px)}
+.plats{display:flex;gap:6px}
+.plat{font-size:.72rem;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+@media (max-width:1000px){.camps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.camps{grid-template-columns:1fr}}
+
+/* creators */
+.creators{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.cr:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.cr-cover{height:150px;position:relative;overflow:hidden}
+.cr-cover canvas{width:100%;height:100%;display:block}
+.cr-av{position:absolute;left:18px;top:118px;width:62px;height:62px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-weight:800;color:#fff;font-size:1.2rem;box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
+.cr-body{padding:40px 18px 18px}
+.cr-body h3{font-size:1.1rem;letter-spacing:-.03em}
+.cr-body .mono{font-size:.68rem;margin-top:4px;display:block}
+.cr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:16px 0}
+.cr-stats div{text-align:center;background:var(--bg);border-radius:10px;padding:8px 4px}
+.cr-stats b{display:block;font-size:.95rem;letter-spacing:-.02em}
+.cr-stats small{font-size:.66rem;color:var(--mute)}
+.cr .btn{width:100%;padding:10px}
+.cr .btn.sent{background:var(--ink);color:#fff}
+@media (max-width:1050px){.creators{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.creators{grid-template-columns:1fr}}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.calc-out{background:linear-gradient(160deg,#16181f,#0E1015 60%,#262a33);color:#fff;border-radius:var(--r);padding:clamp(24px,3vw,38px);position:relative;overflow:hidden;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:22px}
+.calc-out::before{content:"";position:absolute;width:420px;height:420px;right:-140px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%)}
+.calc-out .mono{color:#9aa0ab}
+.big{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
+.calc-rows{display:grid;gap:10px;margin-top:auto}
+.calc-rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:.95rem}
+.calc-rows b{font-variant-numeric:tabular-nums}
+.out-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.out-row b{font-family:var(--mono);font-size:.95rem}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
+details{border-bottom:1px solid var(--line-2);padding:22px 0}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-weight:600;font-size:1.1rem;letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:300;font-size:1.6rem;line-height:1;transition:transform .3s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--ink-2);margin:12px 0 0;max-width:62ch}
+@media (max-width:900px){.faq{grid-template-columns:1fr}}
+
+/* cta + footer */
+.cta{position:relative;border-radius:34px;overflow:hidden;padding:clamp(50px,9vw,110px) clamp(22px,5vw,70px);background:linear-gradient(160deg,#fff,#e8eaee);border:1px solid #fff;box-shadow:var(--shadow-lg);text-align:center}
+.cta h2{font-size:clamp(2.4rem,7vw,5.6rem);letter-spacing:-.06em}
+.cta .sub{margin-inline:auto}
+.cta .hero-cta{justify-content:center}
+.rings{position:absolute;inset:0;pointer-events:none;perspective:900px}
+.rings i{position:absolute;left:50%;top:50%;border:1px solid rgba(14,16,21,.08);border-radius:50%;transform:translate(-50%,-50%) rotateX(70deg);animation:ring 9s linear infinite}
+@keyframes ring{to{transform:translate(-50%,-50%) rotateX(70deg) rotateZ(360deg)}}
+footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line-2);padding-top:28px}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.foot a:hover{color:var(--ink)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:16px;background:rgba(236,238,241,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.modal.open{display:grid;animation:fade .3s var(--ease)}
+@keyframes fade{from{opacity:0}}
+.sheet{width:min(480px,100%);background:#fff;border-radius:26px;padding:28px;box-shadow:var(--shadow-lg);border:1px solid var(--line);animation:pop .45s var(--ease)}
+@keyframes pop{from{transform:translateY(20px) scale(.97);opacity:0}}
+.sheet h3{font-size:1.6rem;letter-spacing:-.04em}
+.tx{display:grid;gap:10px;margin:22px 0}
+.tx li{list-style:none;display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);font-size:.93rem;transition:background .3s}
+.tx li .st{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line-2);flex:none;display:grid;place-items:center;font-size:.75rem}
+.tx li.run .st{border-color:var(--ink);border-top-color:transparent;animation:rot .8s linear infinite}
+.tx li.done{background:#fff}
+.tx li.done .st{background:var(--ink);border-color:var(--ink);color:#fff}
+.tx li small{display:block;color:var(--mute);font-size:.78rem}
+@keyframes rot{to{transform:rotate(360deg)}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);z-index:120;background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-size:.9rem;box-shadow:var(--shadow-lg);transition:transform .45s var(--ease);max-width:calc(100% - 32px);text-align:center}
+.toast.show{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="bm-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f4a"/><stop offset="1" stop-color="#0E1015"/></linearGradient>
+    <linearGradient id="bm-ring" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="64" y2="64"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#cfd3d9"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+    <symbol id="bond-mark" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="18" fill="url(#bm-bg)"/>
+      <g fill="none" stroke="url(#bm-ring)" stroke-width="6"><circle cx="25" cy="32" r="11"/><circle cx="39" cy="32" r="11"/></g>
+      <path d="M27.66 21.33A11 11 0 0 1 35.05 27.53" fill="none" stroke="#2a2e37" stroke-width="9"/>
+      <path d="M26.15 21.06A11 11 0 0 1 35.57 28.97" fill="none" stroke="url(#bm-ring)" stroke-width="6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#top" class="brand"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#bond-mark"/></svg>Bond</a>
+      <nav class="links" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#launch">Launch</a>
+        <a href="#campaigns">Campaigns</a>
+        <a href="#creators">Creators</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-r">
+        <a class="btn" href="#creators">For creators</a>
+        <button class="btn dark" id="walletBtn">Connect wallet</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="grid-floor" aria-hidden="true"></div>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="hero-in wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span>Live on Solana · built on pump.fun</span>
+        <h1><span class="grad">Meet</span> <span class="chrome-text">Bond.</span></h1>
+        <p class="sub">The creator campaign launchpad on Solana. Launch a pump.fun coin, and its creator fees fund the marketing: UGC creators get paid to make it go viral.</p>
+        <div class="hero-cta">
+          <a class="btn dark lg" href="#launch">Launch a coin
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a class="btn lg" href="#campaigns">Browse campaigns</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>0</b><span>coins launched</span></div>
+          <div class="stat"><b>◎0</b><span>fees routed to creators</span></div>
+          <div class="stat"><b>0</b><span>UGC views paid</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint mono" aria-hidden="true"><i></i>scroll</div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-label="Recent activity">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <!-- HOW -->
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">How it works</span>
+          <h2 class="h2">Fees in. <span class="chrome-text">Attention</span> out.</h2>
+        </div>
+        <p class="sub" style="margin:0">Every trade on your coin earns creator fees. Bond turns them into a campaign budget, so the coin pays for its own growth.</p>
+      </div>
+      <div class="steps">
+        <article class="step reveal tilt">
+          <div class="art"><div class="cube"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+          <span class="n">01</span>
+          <h3>Launch on pump.fun</h3>
+          <p>Name, ticker, image. Bond creates the coin on pump.fun's bonding curve in one wallet approval.</p>
+        </article>
+        <article class="step reveal tilt" style="transition-delay:.08s">
+          <div class="art"><div class="flow"><div class="coin3">B</div><div class="pipe"></div><div class="vault"><i></i><i></i><i></i></div></div></div>
+          <span class="n">02</span>
+          <h3>Route the fees</h3>
+          <p>Pick a split: marketing, UGC creators, and you. Creator fees flow into an on-chain campaign vault as the coin trades.</p>
+        </article>
+        <article class="step reveal tilt" style="transition-delay:.16s">
+          <div class="art"><div class="phones"><div class="phone"></div><div class="phone"></div><div class="phone"></div></div></div>
+          <span class="n">03</span>
+          <h3>Creators get paid</h3>
+          <p>TikTok, X and YouTube creators join your campaign, post, and get paid per verified view from the vault.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAUNCH -->
+  <section class="sec" id="launch" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Launch</span>
+          <h2 class="h2">Launch a coin that<br>markets itself.</h2>
+        </div>
+        <p class="sub" style="margin:0">Set it up once. The campaign budget grows with every trade.</p>
+      </div>
+      <div class="launch">
+        <form class="panel reveal" id="launchForm" autocomplete="off">
+          <div class="row">
+            <div class="field"><label for="fName">Coin name</label><input class="input" id="fName" maxlength="32" placeholder="Bond Cat" required></div>
+            <div class="field"><label for="fTicker">Ticker</label><input class="input" id="fTicker" maxlength="10" placeholder="BCAT" required style="text-transform:uppercase"></div>
+          </div>
+          <div class="field"><label for="fDesc">Description</label><textarea class="input" id="fDesc" maxlength="240" placeholder="The first cat that pays creators to post about it."></textarea></div>
+          <div class="field">
+            <label for="fImg">Image</label>
+            <label class="drop" for="fImg"><span class="thumb" id="thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span><span><b style="font-weight:600">Upload image</b><br><span class="hint">PNG, JPG or GIF</span></span></label>
+            <input type="file" id="fImg" accept="image/*" hidden>
+          </div>
+
+          <div class="split">
+            <div class="out-row"><label style="font-weight:600;font-size:.85rem;color:var(--ink-2)">Creator fee split</label><span class="mono">must total 100%</span></div>
+            <div class="split-bar" aria-hidden="true"><span class="s1" id="b1"></span><span class="s2" id="b2"></span><span class="s3" id="b3"></span></div>
+            <div class="sl"><i style="background:#0E1015"></i><span>UGC creator campaigns<br><input type="range" id="r1" min="0" max="100" value="50" aria-label="UGC creator campaigns share"></span><b id="v1">50%</b></div>
+            <div class="sl"><i style="background:#9aa0aa"></i><span>Marketing (ads, KOLs, raids)<br><input type="range" id="r2" min="0" max="100" value="30" aria-label="Marketing share"></span><b id="v2">30%</b></div>
+            <div class="sl"><i style="background:#dcdfe4;border:1px solid var(--line-2)"></i><span>You (dev wallet)</span><b id="v3">20%</b></div>
+          </div>
+
+          <div class="field">
+            <label>Where should creators post?</label>
+            <div class="chips" id="platChips">
+              <button type="button" class="chip" aria-pressed="true">TikTok</button>
+              <button type="button" class="chip" aria-pressed="true">X</button>
+              <button type="button" class="chip" aria-pressed="false">YouTube Shorts</button>
+              <button type="button" class="chip" aria-pressed="false">Instagram Reels</button>
+              <button type="button" class="chip" aria-pressed="false">Twitch</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="fCpm">Pay per 1,000 views</label><input class="input" id="fCpm" type="number" min="0.001" step="0.001" value="0.02"><span class="hint">in SOL</span></div>
+            <div class="field"><label for="fBuy">Dev buy (optional)</label><input class="input" id="fBuy" type="number" min="0" step="0.1" value="0.5"><span class="hint">in SOL</span></div>
+          </div>
+          <button class="btn dark lg" style="width:100%;margin-top:6px" type="submit">Launch on pump.fun
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          <p class="note">Demo: launching here simulates the flow and sends no transactions.</p>
+        </form>
+
+        <div class="preview-wrap reveal">
+          <div class="tok" id="tok">
+            <div class="tok-top">
+              <div class="tok-img" id="pImg">B</div>
+              <div>
+                <div class="tok-name" id="pName">Bond Cat</div>
+                <div class="tok-tk" id="pTicker">$BCAT</div>
+              </div>
+              <span class="badge live" style="align-self:flex-start">Preview</span>
+            </div>
+            <p class="tok-desc" id="pDesc">The first cat that pays creators to post about it.</p>
+            <div class="tok-grid">
+              <div class="tok-cell"><small>UGC budget</small><b id="pUgc">50%</b></div>
+              <div class="tok-cell"><small>Marketing</small><b id="pMkt">30%</b></div>
+              <div class="tok-cell"><small>Pays creators</small><b id="pCpm">◎0.02 / 1k</b></div>
+              <div class="tok-cell"><small>Platforms</small><b id="pPlat">TikTok, X</b></div>
+            </div>
+            <div class="bonding">
+              <div class="out-row"><span class="mono">Bonding curve</span><b id="pBond">3%</b></div>
+              <div class="bar"><i id="pBar"></i></div>
+            </div>
+          </div>
+          <p class="note" style="text-align:center">Move your cursor over the card.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGNS -->
+  <section class="sec" id="campaigns" style="background:#fff;border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Live campaigns</span>
+          <h2 class="h2">Get paid to post.</h2>
+          <p class="sub">Example campaigns. Real ones show up here as coins launch on Bond.</p>
+        </div>
+        <div class="tabs" role="tablist" id="campTabs">
+          <button class="tab" role="tab" aria-selected="true" data-f="all">All</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="TikTok">TikTok</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="X">X</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="YouTube">YouTube</button>
+          <button class="tab" role="tab" aria-selected="false" data-f="hot">Biggest budget</button>
+        </div>
+      </div>
+      <div class="camps" id="camps"></div>
+    </div>
+  </section>
+
+  <!-- CREATORS -->
+  <section class="sec" id="creators">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Creator marketplace</span>
+          <h2 class="h2">Find the creators<br>who move markets.</h2>
+        </div>
+        <p class="sub" style="margin:0">Browse verified UGC creators by platform, reach and price. Invite them straight into your campaign. The profiles below are examples.</p>
+      </div>
+      <div class="creators" id="creatorsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="sec" id="calc" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Budget calculator</span>
+          <h2 class="h2">What could your<br>coin fund?</h2>
+        </div>
+      </div>
+      <div class="calc">
+        <div class="panel reveal">
+          <div class="field">
+            <div class="out-row"><label for="cVol">Daily trading volume</label><b id="cVolV">$250,000</b></div>
+            <input type="range" id="cVol" min="10000" max="5000000" step="10000" value="250000">
+          </div>
+          <div class="field">
+            <div class="out-row"><label for="cFee">Creator fee rate</label><b id="cFeeV">0.30%</b></div>
+            <input type="range" id="cFee" min="0.05" max="1" step="0.05" value="0.3">
+            <span class="hint">pump.fun sets the creator fee rate and it can change, so check the current rate.</span>
+          </div>
+          <div class="field">
+            <div class="out-row"><label for="cUgc">Share for UGC + marketing</label><b id="cUgcV">80%</b></div>
+            <input type="range" id="cUgc" min="0" max="100" step="5" value="80">
+          </div>
+          <div class="field" style="margin:0">
+            <div class="out-row"><label for="cCpm">Pay per 1,000 views (USD)</label><b id="cCpmV">$3.00</b></div>
+            <input type="range" id="cCpm" min="0.5" max="15" step="0.5" value="3">
+          </div>
+        </div>
+        <div class="calc-out reveal">
+          <div><span class="mono">Monthly campaign budget</span><div class="big" id="cOut">$0</div></div>
+          <div class="calc-rows">
+            <div><span>Creator fees / day</span><b id="cDay">$0</b></div>
+            <div><span>Views funded / month</span><b id="cViews">0</b></div>
+            <div><span>~ creator videos at 50k views</span><b id="cVids">0</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq" style="padding-top:0">
+    <div class="wrap faq">
+      <div class="reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h2" style="margin-top:22px">Questions,<br>answered.</h2>
+      </div>
+      <div class="reveal">
+        <details open><summary>Where does the campaign money come from?</summary><p>From your coin's pump.fun creator fees. Every buy and sell pays a small creator fee. At launch, Bond points that fee at a campaign vault, split the way you choose between UGC creators, marketing, and your own wallet.</p></details>
+        <details><summary>How do creators get paid?</summary><p>Creators join a campaign, post with your coin's tag or link, and submit the post. Views are verified, then the vault pays out at the rate you set per 1,000 views, in SOL, straight to their wallet.</p></details>
+        <details><summary>Can I change the split later?</summary><p>You set the split at launch. Locking it means holders and creators can trust the budget will be there, and it's what makes a Bond coin different from a dev wallet promising to "do marketing".</p></details>
+        <details><summary>What if the coin graduates from the bonding curve?</summary><p>Campaigns keep running. Creator fees keep flowing into the vault after graduation, and so do creator payouts.</p></details>
+        <details><summary>I'm a creator. How do I join?</summary><p>Connect a wallet, link your TikTok, X or YouTube account, and browse live campaigns. No follower minimum. You're paid on views, so small accounts that go viral earn the same rate as big ones.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta reveal">
+        <div class="rings" aria-hidden="true"><i style="width:340px;height:340px"></i><i style="width:560px;height:560px;animation-duration:14s"></i><i style="width:820px;height:820px;animation-duration:22s;animation-direction:reverse"></i><i style="width:1100px;height:1100px;animation-duration:30s"></i></div>
+        <div style="position:relative">
+          <span class="eyebrow"><span class="dot"></span>Ready when you are</span>
+          <h2 style="margin-top:24px">Launch it. <span class="chrome-text">Bond it.</span></h2>
+          <p class="sub">The coin that pays creators to talk about it. One approval to launch.</p>
+          <div class="hero-cta">
+            <a class="btn dark lg" href="#launch">Launch a coin</a>
+            <a class="btn lg" href="#campaigns">Join as a creator</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand" style="color:var(--ink)"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#bond-mark"/></svg>Bond</a>
+    <nav><a href="#how">How it works</a><a href="#launch">Launch</a><a href="#campaigns">Campaigns</a><a href="#creators">Creators</a><a href="#faq">FAQ</a></nav>
+    <span>© 2026 Bond · Built on Solana. Not affiliated with pump.fun.</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <span class="mono">Demo launch</span>
+    <h3 id="mTitle" style="margin-top:8px">Launching $BCAT</h3>
+    <ul class="tx" id="txList" style="padding:0">
+      <li><span class="st"></span><div>Create coin on pump.fun<small>Bonding curve + dev buy</small></div></li>
+      <li><span class="st"></span><div>Point creator fees at the campaign vault<small>Locks your split</small></div></li>
+      <li><span class="st"></span><div>Open the UGC campaign<small>Listed on Bond for creators</small></div></li>
+    </ul>
+    <div style="display:flex;gap:10px">
+      <button class="btn" id="mClose" style="flex:1">Close</button>
+      <a class="btn dark" id="mView" href="#campaigns" style="flex:1;display:none">View campaign</a>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// ---------- data (demo) ----------
+const PAL=[['#0E1015','#4a505c'],['#6b7280','#c3c7ce'],['#1f2937','#9ca3af'],['#374151','#d1d5db'],['#111827','#6b7280'],['#4b5563','#e5e7eb']];
+const camps=[
+  {n:'Bond Cat',t:'BCAT',d:'Skits with a cat that pays rent in memecoins. Funny > polished.',b:84.2,cpm:.02,used:61,pl:['TikTok','X'],c:212},
+  {n:'Gigachad Labs',t:'LABS',d:'Gym-floor POV clips. Mention $LABS and show the chart.',b:146.5,cpm:.03,used:38,pl:['TikTok','YouTube'],c:341},
+  {n:'Moonrock',t:'ROCK',d:'Reaction videos to the chart going vertical. Duets welcome.',b:39.8,cpm:.015,used:72,pl:['X'],c:97},
+  {n:'Snack Index',t:'SNAX',d:'Review a snack, rate it in $SNAX. Weirder snacks pay the same.',b:62.1,cpm:.02,used:24,pl:['TikTok','YouTube'],c:158},
+  {n:'Pixel Pope',t:'POPE',d:'Pixel-art edits and memes. Best edits get pinned on the coin page.',b:21.4,cpm:.01,used:88,pl:['X','TikTok'],c:64},
+  {n:'Night Shift',t:'SHIFT',d:'3am grindset vlogs. Show your setup, end on the ticker.',b:103.9,cpm:.025,used:45,pl:['YouTube','X'],c:233},
+];
+const creators=[
+  {h:'@lunaclips',n:'Luna Park',p:'TikTok',f:'412K',v:'88K',r:'◎0.6'},
+  {h:'@degenjoe',n:'Joe Marsh',p:'X',f:'96K',v:'31K',r:'◎0.3'},
+  {h:'@chartgirl',n:'Mira Chen',p:'YouTube',f:'1.2M',v:'240K',r:'◎2.1'},
+  {h:'@okaysam',n:'Sam Okafor',p:'TikTok',f:'58K',v:'44K',r:'◎0.25'},
+  {h:'@pixelpriest',n:'Theo Vance',p:'X',f:'210K',v:'52K',r:'◎0.5'},
+  {h:'@skitszn',n:'Ava Torres',p:'TikTok',f:'860K',v:'190K',r:'◎1.4'},
+  {h:'@solsunday',n:'Kai Brooks',p:'YouTube',f:'134K',v:'36K',r:'◎0.4'},
+  {h:'@memeplug',n:'Rin Sato',p:'Instagram',f:'305K',v:'71K',r:'◎0.55'},
+];
+const initials=s=>s.replace(/[^A-Za-z ]/g,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+const grad=i=>`linear-gradient(135deg,${PAL[i%PAL.length][0]},${PAL[i%PAL.length][1]})`;
+const $=s=>document.querySelector(s);
+
+// ---------- ticker ----------
+(function(){
+  const items=[['Launch','on pump.fun in one approval'],['Fees','fund your marketing'],['Creators','paid per verified view'],['Post','on TikTok, X, YouTube and Reels'],['Split','locked at launch'],['Built','on Solana']];
+  let h='';
+  for(let k=0;k<4;k++) items.forEach(([b,t])=>{h+=`<div class="tick"><svg class="av" viewBox="0 0 64 64"><use href="#bond-mark"/></svg><b>${b}</b> ${t}</div>`});
+  $('#ticker').innerHTML=h;
+})();
+
+// ---------- campaigns ----------
+function renderCamps(f){
+  let list=camps.map((c,i)=>({...c,i}));
+  if(f==='hot') list.sort((a,b)=>b.b-a.b);
+  else if(f!=='all') list=list.filter(c=>c.pl.includes(f));
+  $('#camps').innerHTML=list.map(c=>`
+    <article class="camp tilt">
+      <div class="camp-top"><div class="camp-av" style="background:${grad(c.i)}">${initials(c.n)}</div>
+        <div><h3>${c.n}</h3><span class="mono">$${c.t} · ${c.c} creators</span></div>
+        <span class="badge">Example</span></div>
+      <p>${c.d}</p>
+      <div class="kv"><div><small>Budget</small><b>◎${c.b}</b></div><div><small>Per 1k views</small><b>◎${c.cpm}</b></div><div><small>Left</small><b>◎${(c.b*(100-c.used)/100).toFixed(1)}</b></div></div>
+      <div class="prog"><div class="lbl"><span>Budget used</span><span>${c.used}%</span></div><div class="bar"><i style="width:${c.used}%"></i></div></div>
+      <div class="plats">${c.pl.map(p=>`<span class="plat">${p}</span>`).join('')}</div>
+      <button class="btn join" data-t="${c.t}">Join campaign</button>
+    </article>`).join('')||'<p class="sub">No campaigns on this platform yet.</p>';
+  bindTilt('#camps .tilt',8);
+}
+$('#campTabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b) return;
+  document.querySelectorAll('#campTabs .tab').forEach(t=>t.setAttribute('aria-selected',t===b));
+  renderCamps(b.dataset.f);
+});
+$('#camps').addEventListener('click',e=>{
+  const b=e.target.closest('.join'); if(!b) return;
+  b.textContent='Joined ✓'; b.classList.add('dark'); toast(`You joined the $${b.dataset.t} campaign (demo)`);
+});
+renderCamps('all');
+
+// ---------- creators ----------
+$('#creatorsGrid').innerHTML=creators.map((c,i)=>`
+  <article class="cr reveal" style="transition-delay:${(i%4)*.06}s">
+    <div class="cr-cover"><canvas data-seed="${i}"></canvas></div>
+    <div class="cr-av" style="background:${grad(i)}">${initials(c.n)}</div>
+    <div class="cr-body">
+      <h3>${c.n}</h3><span class="mono">${c.h} · ${c.p}</span>
+      <div class="cr-stats"><div><b>${c.f}</b><small>followers</small></div><div><b>${c.v}</b><small>avg views</small></div><div><b>${c.r}</b><small>per post</small></div></div>
+      <button class="btn invite">Invite to campaign</button>
+    </div>
+  </article>`).join('');
+$('#creatorsGrid').addEventListener('click',e=>{
+  const b=e.target.closest('.invite'); if(!b||b.classList.contains('sent')) return;
+  b.textContent='Invite sent ✓'; b.classList.add('sent'); toast('Invite sent (demo)');
+});
+// generative chrome covers
+document.querySelectorAll('.cr-cover canvas').forEach(cv=>{
+  const s=+cv.dataset.seed, w=cv.width=600, h=cv.height=300, x=cv.getContext('2d');
+  const g=x.createLinearGradient(0,0,w,h); g.addColorStop(0,'#fbfbfc'); g.addColorStop(1,'#d9dce1'); x.fillStyle=g; x.fillRect(0,0,w,h);
+  let r=s*9301+49297; const rnd=()=>((r=(r*9301+49297)%233280)/233280);
+  for(let k=0;k<7;k++){
+    const cx=rnd()*w, cy=rnd()*h, rad=40+rnd()*140;
+    const rg=x.createRadialGradient(cx-rad*.3,cy-rad*.3,rad*.1,cx,cy,rad);
+    rg.addColorStop(0,'rgba(255,255,255,.95)'); rg.addColorStop(.6,`rgba(${150+rnd()*60|0},${155+rnd()*60|0},${165+rnd()*60|0},.55)`); rg.addColorStop(1,'rgba(120,125,135,0)');
+    x.fillStyle=rg; x.beginPath(); x.arc(cx,cy,rad,0,7); x.fill();
+  }
+  x.strokeStyle='rgba(14,16,21,.08)'; for(let k=0;k<w;k+=24){x.beginPath();x.moveTo(k,0);x.lineTo(k-h*.6,h);x.stroke();}
+});
+
+// ---------- tilt ----------
+function bindTilt(sel,max){
+  document.querySelectorAll(sel).forEach(el=>{
+    if(el._t) return; el._t=1;
+    el.addEventListener('pointermove',e=>{
+      if(e.pointerType!=='mouse') return;
+      const r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+      el.style.transform=`rotateX(${(.5-py)*max}deg) rotateY(${(px-.5)*max}deg) translateZ(0)`;
+      el.style.setProperty('--mx',px*100+'%'); el.style.setProperty('--my',py*100+'%');
+    });
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+}
+bindTilt('.step.tilt',6); bindTilt('#tok',14);
+
+// ---------- launch form ----------
+const r1=$('#r1'), r2=$('#r2');
+function syncSplit(src){
+  let a=+r1.value, b=+r2.value;
+  if(a+b>100){ if(src===r1) b=r2.value=100-a; else a=r1.value=100-b; }
+  const c=100-a-b;
+  $('#v1').textContent=a+'%'; $('#v2').textContent=b+'%'; $('#v3').textContent=c+'%';
+  $('#b1').style.width=a+'%'; $('#b2').style.width=b+'%'; $('#b3').style.width=c+'%';
+  $('#pUgc').textContent=a+'%'; $('#pMkt').textContent=b+'%';
+}
+r1.addEventListener('input',()=>syncSplit(r1)); r2.addEventListener('input',()=>syncSplit(r2)); syncSplit();
+const bindText=(i,o,fmt)=>{const f=()=>$(o).textContent=fmt($(i).value);$(i).addEventListener('input',f)};
+bindText('#fName','#pName',v=>v||'Bond Cat');
+bindText('#fTicker','#pTicker',v=>'$'+(v||'BCAT').toUpperCase());
+bindText('#fDesc','#pDesc',v=>v||'The first cat that pays creators to post about it.');
+bindText('#fCpm','#pCpm',v=>`◎${v||0} / 1k`);
+$('#fName').addEventListener('input',e=>{ if(!$('#pImg').style.backgroundImage) $('#pImg').textContent=(e.target.value||'B')[0].toUpperCase(); });
+$('#fBuy').addEventListener('input',e=>{const p=Math.min(100,3+(+e.target.value||0)*1.2);$('#pBond').textContent=p.toFixed(0)+'%';$('#pBar').style.width=p+'%'});
+$('#fBuy').dispatchEvent(new Event('input'));
+$('#fImg').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const u=URL.createObjectURL(f);
+  [$('#pImg'),$('#thumb')].forEach(el=>{el.style.backgroundImage=`url(${u})`;el.textContent=''});
+});
+$('#platChips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c) return;
+  c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');
+  const on=[...document.querySelectorAll('#platChips .chip[aria-pressed=true]')].map(x=>x.textContent.replace(' Shorts','').replace(' Reels',''));
+  $('#pPlat').textContent=on.length?on.slice(0,2).join(', ')+(on.length>2?` +${on.length-2}`:''):'None';
+});
+
+const modal=$('#modal');
+$('#launchForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const tk=($('#fTicker').value||'BCAT').toUpperCase();
+  $('#mTitle').textContent=`Launching $${tk}`;
+  const items=[...document.querySelectorAll('#txList li')];
+  items.forEach(li=>{li.className='';li.querySelector('.st').textContent=''});
+  $('#mView').style.display='none'; modal.classList.add('open');
+  items.forEach((li,i)=>{
+    setTimeout(()=>li.className='run',i*1300+200);
+    setTimeout(()=>{li.className='done';li.querySelector('.st').textContent='✓';
+      if(i===items.length-1){$('#mTitle').textContent=`$${tk} is live`;$('#mView').style.display='inline-flex';}
+    },i*1300+1300);
+  });
+});
+$('#mClose').onclick=()=>modal.classList.remove('open');
+$('#mView').onclick=()=>modal.classList.remove('open');
+modal.addEventListener('click',e=>{if(e.target===modal) modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') modal.classList.remove('open')});
+
+// ---------- calculator ----------
+const fmt$=n=>'$'+Math.round(n).toLocaleString('en-US');
+function calc(){
+  const vol=+$('#cVol').value, fee=+$('#cFee').value/100, share=+$('#cUgc').value/100, cpm=+$('#cCpm').value;
+  const day=vol*fee, month=day*30*share, views=month/cpm*1000;
+  $('#cVolV').textContent=fmt$(vol); $('#cFeeV').textContent=(fee*100).toFixed(2)+'%';
+  $('#cUgcV').textContent=Math.round(share*100)+'%'; $('#cCpmV').textContent='$'+cpm.toFixed(2);
+  $('#cOut').textContent=fmt$(month); $('#cDay').textContent=fmt$(day);
+  $('#cViews').textContent=views>=1e6?(views/1e6).toFixed(1)+'M':Math.round(views).toLocaleString('en-US');
+  $('#cVids').textContent=Math.floor(views/50000).toLocaleString('en-US');
+}
+['#cVol','#cFee','#cUgc','#cCpm'].forEach(s=>$(s).addEventListener('input',calc)); calc();
+
+// ---------- misc ----------
+let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400)}
+$('#walletBtn').addEventListener('click',async e=>{
+  const p=window.phantom?.solana||window.solana;
+  if(!p){toast('No Solana wallet found. Install Phantom or Solflare.');return}
+  try{const r=await p.connect();const k=r.publicKey.toString();e.target.textContent=k.slice(0,4)+'…'+k.slice(-4)}catch{toast('Wallet connection cancelled')}
+});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// in-page links: smooth scroll and keep the address bar clean (no #section)
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  const id=a.getAttribute('href').slice(1), el=id==='top'?document.body:document.getElementById(id);
+  if(!el) return;
+  e.preventDefault();
+  if(id==='top') scrollTo({top:0,behavior:'smooth'}); else el.scrollIntoView({behavior:'smooth'});
+  try{ if(location.hash) history.replaceState(null,'',location.pathname+location.search); }catch{}
+});
+</script>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const canvas=document.getElementById('gl');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let renderer;
+try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ canvas.remove(); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.05;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+const camera=new THREE.PerspectiveCamera(32,1,0.1,100);
+camera.position.set(0,0,14);
+scene.add(new THREE.HemisphereLight(0xffffff,0xd8dbe0,0.6));
+const key=new THREE.DirectionalLight(0xffffff,1.6); key.position.set(4,6,8); scene.add(key);
+
+const chrome=new THREE.MeshPhysicalMaterial({color:0xdfe2e7,metalness:1,roughness:.16,clearcoat:1,clearcoatRoughness:.08});
+const ceramic=new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0,roughness:.28,clearcoat:1,clearcoatRoughness:.12});
+const graphite=new THREE.MeshPhysicalMaterial({color:0x1d2026,metalness:.55,roughness:.28,clearcoat:1,clearcoatRoughness:.1});
+const glass=new THREE.MeshPhysicalMaterial({color:0x0b0c10,metalness:.2,roughness:.05,clearcoat:1});
+
+// ---------- the Bond mark, drawn on canvas ----------
+function drawMark(x,cx,cy,size,bg=true){
+  const s=size/64; x.save(); x.translate(cx-size/2,cy-size/2); x.scale(s,s);
+  if(bg){ const g=x.createLinearGradient(0,0,0,64); g.addColorStop(0,'#3a3f4a'); g.addColorStop(1,'#0E1015'); x.fillStyle=g; x.beginPath(); x.roundRect(0,0,64,64,18); x.fill(); }
+  const rg=x.createLinearGradient(0,0,64,64); rg.addColorStop(0,'#fff'); rg.addColorStop(.55,'#cfd3d9'); rg.addColorStop(1,'#fff');
+  x.lineWidth=6; x.strokeStyle=rg;
+  x.beginPath(); x.arc(25,32,11,0,7); x.stroke();
+  x.beginPath(); x.arc(39,32,11,0,7); x.stroke();
+  const r=Math.PI/180; // A passes over B at the top crossing
+  x.lineWidth=9; x.strokeStyle='#2a2e37'; x.beginPath(); x.arc(25,32,11,-76*r,-24*r); x.stroke();
+  x.lineWidth=6; x.lineCap='round'; x.strokeStyle=rg; x.beginPath(); x.arc(25,32,11,-84*r,-16*r); x.stroke();
+  x.restore();
+}
+
+// ---------- UGC video screen ----------
+const SW=540, SH=1170;
+function heart(x,cx,cy,r){x.beginPath();x.moveTo(cx,cy+r*.9);x.bezierCurveTo(cx-r*1.6,cy-r*.1,cx-r*.7,cy-r*1.2,cx,cy-r*.45);x.bezierCurveTo(cx+r*.7,cy-r*1.2,cx+r*1.6,cy-r*.1,cx,cy+r*.9);x.fill()}
+function screenPainter(variant){
+  const c=document.createElement('canvas'); c.width=SW; c.height=SH; const x=c.getContext('2d');
+  const tex=new THREE.CanvasTexture(c); tex.colorSpace=THREE.SRGBColorSpace; tex.anisotropy=8;
+  const caps=[['@yourcreator','this coin literally pays me to post'],['@ugc.daily','day 3 of posting $COIN until it bonds'],['@clipsbyjo','rating memecoins by vibes only']][variant];
+  const tones=[['#f3f4f6','#c9ccd3','#8b909b'],['#e9ebee','#aeb3bc','#5d636e'],['#fafafa','#d7dade','#9aa0aa']][variant];
+  let likes=0;
+  function paint(t){
+    // the "video": slow drifting chrome blobs
+    const g=x.createLinearGradient(0,0,0,SH); g.addColorStop(0,tones[0]); g.addColorStop(1,tones[1]); x.fillStyle=g; x.fillRect(0,0,SW,SH);
+    for(let k=0;k<5;k++){
+      const bx=SW*(.5+.38*Math.sin(t*.35+k*1.7)), by=SH*(.42+.3*Math.cos(t*.27+k*2.3)), br=160+60*Math.sin(t*.5+k);
+      const rg=x.createRadialGradient(bx-br*.3,by-br*.3,br*.1,bx,by,br);
+      rg.addColorStop(0,'rgba(255,255,255,.95)'); rg.addColorStop(.6,tones[2]+'66'); rg.addColorStop(1,'rgba(120,125,135,0)');
+      x.fillStyle=rg; x.beginPath(); x.arc(bx,by,br,0,7); x.fill();
+    }
+    // subject: a spinning Bond coin
+    const cy=SH*.42, sq=Math.cos(t*1.6);
+    x.save(); x.translate(SW/2,cy+Math.sin(t*2)*10); x.scale(Math.max(.08,Math.abs(sq)),1);
+    x.shadowColor='rgba(0,0,0,.25)'; x.shadowBlur=40; x.shadowOffsetY=20;
+    const cg=x.createLinearGradient(-130,-130,130,130); cg.addColorStop(0,'#ffffff'); cg.addColorStop(.5,'#c3c7ce'); cg.addColorStop(1,'#f4f5f7');
+    x.fillStyle=cg; x.beginPath(); x.arc(0,0,130,0,7); x.fill(); x.shadowColor='transparent';
+    x.lineWidth=6; x.strokeStyle='#0E1015'; x.beginPath(); x.arc(0,0,112,0,7); x.stroke();
+    if(sq>0) drawMark(x,0,0,140); else { x.fillStyle='#0E1015'; x.font='900 120px "Inter Tight",Arial,sans-serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillText('$',0,8); }
+    x.restore();
+    // top bar
+    const shade=x.createLinearGradient(0,0,0,220); shade.addColorStop(0,'rgba(14,16,21,.35)'); shade.addColorStop(1,'rgba(14,16,21,0)'); x.fillStyle=shade; x.fillRect(0,0,SW,220);
+    x.fillStyle='#fff'; x.font='600 30px "Inter Tight",Arial,sans-serif'; x.textAlign='center'; x.textBaseline='alphabetic';
+    x.globalAlpha=.7; x.fillText('Following',SW/2-90,120); x.globalAlpha=1; x.fillText('For You',SW/2+80,120);
+    x.fillRect(SW/2+50,134,60,5);
+    // bottom gradient + caption
+    const bs=x.createLinearGradient(0,SH-420,0,SH); bs.addColorStop(0,'rgba(14,16,21,0)'); bs.addColorStop(1,'rgba(14,16,21,.7)'); x.fillStyle=bs; x.fillRect(0,SH-420,SW,420);
+    x.textAlign='left'; x.fillStyle='#fff'; x.font='700 32px "Inter Tight",Arial,sans-serif'; x.fillText(caps[0],34,SH-230);
+    x.font='400 27px "Inter Tight",Arial,sans-serif'; x.fillText(caps[1],34,SH-188);
+    x.globalAlpha=.85; x.fillText('#bond #solana #pumpfun',34,SH-150); x.globalAlpha=1;
+    // campaign chip
+    x.fillStyle='rgba(255,255,255,.92)'; x.beginPath(); x.roundRect(34,SH-120,300,54,27); x.fill();
+    drawMark(x,64,SH-93,34);
+    x.fillStyle='#0E1015'; x.font='600 24px "Inter Tight",Arial,sans-serif'; x.fillText('Bond campaign · paid per view',90,SH-85);
+    // right rail
+    const rx=SW-60; x.textAlign='center';
+    x.fillStyle='#fff'; x.beginPath(); x.arc(rx,SH-560,36,0,7); x.fill(); drawMark(x,rx,SH-560,52);
+    likes+= .6;
+    const pulse=1+.18*Math.max(0,Math.sin(t*3)); x.fillStyle='#fff';
+    heart(x,rx,SH-450,26*pulse); x.font='600 22px "Inter Tight",Arial,sans-serif'; x.fillText((12.4+likes/1000).toFixed(1)+'K',rx,SH-398);
+    x.beginPath(); x.ellipse(rx,SH-330,28,24,0,0,7); x.fill(); x.beginPath(); x.moveTo(rx-14,SH-312); x.lineTo(rx-22,SH-292); x.lineTo(rx-2,SH-308); x.fill(); x.fillText('842',rx,SH-272);
+    x.beginPath(); x.moveTo(rx+24,SH-215); x.lineTo(rx-22,SH-232); x.lineTo(rx-22,SH-198); x.closePath(); x.fill(); x.fillText('Share',rx,SH-160);
+    // progress
+    x.fillStyle='rgba(255,255,255,.35)'; x.fillRect(0,SH-14,SW,6); x.fillStyle='#fff'; x.fillRect(0,SH-14,SW*((t*.08)%1),6);
+    tex.needsUpdate=true;
+  }
+  paint(0);
+  return {tex,paint};
+}
+
+// ---------- phone model ----------
+function roundedRectShape(w,h,r){const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s}
+function screenGeo(w,h,r){const g=new THREE.ShapeGeometry(roundedRectShape(w,h,r),12),p=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,(p.getX(i)+w/2)/w,(p.getY(i)+h/2)/h);return g}
+function makePhone(variant){
+  const W=2.3,H=4.75,D=.26, grp=new THREE.Group();
+  grp.add(new THREE.Mesh(new RoundedBoxGeometry(W,H,D,8,.34),chrome));
+  const bezel=new THREE.Mesh(screenGeo(W-.1,H-.1,.3),glass); bezel.position.z=D/2+.002; grp.add(bezel);
+  const sp=screenPainter(variant);
+  const scr=new THREE.Mesh(screenGeo(W-.22,H-.22,.24),new THREE.MeshBasicMaterial({map:sp.tex,toneMapped:false}));
+  scr.position.z=D/2+.004; grp.add(scr);
+  const island=new THREE.Mesh(new THREE.ShapeGeometry(roundedRectShape(.56,.16,.08),8),new THREE.MeshBasicMaterial({color:0x050607}));
+  island.position.set(0,H/2-.3,D/2+.008); grp.add(island);
+  // back: camera bump + logo
+  const bump=new THREE.Mesh(new RoundedBoxGeometry(.9,.9,.08,4,.2),graphite); bump.position.set(-.55,H/2-.7,-D/2-.03); grp.add(bump);
+  [[-.75,-.2],[-.35,-.2],[-.75,-.6+.0],].forEach(([lx,ly])=>{const l=new THREE.Mesh(new THREE.CylinderGeometry(.14,.14,.06,32),glass);l.rotation.x=Math.PI/2;l.position.set(lx,H/2+ly-.3,-D/2-.08);grp.add(l)});
+  const back=new THREE.Mesh(new THREE.PlaneGeometry(W-.3,H-.3),graphite); back.rotation.y=Math.PI; back.position.z=-D/2-.002; grp.add(back);
+  // side buttons
+  [[1,.9,.5],[-1,1.1,.32],[-1,.6,.32]].forEach(([sx,y,h])=>{const b=new THREE.Mesh(new RoundedBoxGeometry(.05,h,.1,2,.02),chrome);b.position.set(sx*(W/2+.012),y,0);grp.add(b)});
+  return {grp,paint:sp.paint};
+}
+
+const root=new THREE.Group(); scene.add(root);
+const main=makePhone(0); root.add(main.grp);
+const left=makePhone(1); left.grp.scale.setScalar(.62); left.grp.position.set(-2.35,-.7,-2.4); left.grp.rotation.set(0,.55,.08); root.add(left.grp);
+const right=makePhone(2); right.grp.scale.setScalar(.58); right.grp.position.set(2.7,.7,-2.8); right.grp.rotation.set(0,-.6,-.1); root.add(right.grp);
+
+// floating bits: hearts, coins with the mark, play buttons, spheres
+const hs=new THREE.Shape(); hs.moveTo(0,-.45); hs.bezierCurveTo(-.8,.05,-.35,.6,0,.22); hs.bezierCurveTo(.35,.6,.8,.05,0,-.45);
+const heartGeo=new THREE.ExtrudeGeometry(hs,{depth:.16,bevelEnabled:true,bevelThickness:.06,bevelSize:.05,bevelSegments:6,curveSegments:24}); heartGeo.center();
+const mc=document.createElement('canvas'); mc.width=mc.height=256; const mx2=mc.getContext('2d'); mx2.fillStyle='#eceef1'; mx2.fillRect(0,0,256,256); drawMark(mx2,128,128,170);
+const markTex=new THREE.CanvasTexture(mc); markTex.colorSpace=THREE.SRGBColorSpace;
+const coinFace=new THREE.MeshPhysicalMaterial({map:markTex,metalness:.2,roughness:.3,clearcoat:1});
+const coinGeo=new THREE.CylinderGeometry(.42,.42,.1,64);
+const playGeo=new THREE.CylinderGeometry(.42,.42,.16,3);
+const bits=[];
+const kinds=[
+  ()=>new THREE.Mesh(heartGeo,ceramic),
+  ()=>{const m=new THREE.Mesh(coinGeo,[chrome,coinFace,coinFace]);m.userData.coin=true;return m},
+  ()=>new THREE.Mesh(heartGeo,graphite),
+  ()=>new THREE.Mesh(playGeo,chrome),
+  ()=>new THREE.Mesh(new THREE.SphereGeometry(.26,48,48),ceramic),
+];
+for(let i=0;i<12;i++){
+  const m=kinds[i%kinds.length]();
+  const a=i/12*Math.PI*2, r=3+Math.random()*1.3;
+  m.userData={...m.userData,a,r,y:(Math.random()-.5)*4.4,s:.15+Math.random()*.25,sp:Math.random()*Math.PI*2,rot:new THREE.Vector3(Math.random(),Math.random(),Math.random()).multiplyScalar(.7)};
+  m.scale.setScalar(.6+Math.random()*.5);
+  if(m.userData.coin) m.rotation.x=Math.PI/2;
+  root.add(m); bits.push(m);
+}
+// likes rising off the screen
+const likeMat=new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0,roughness:.25,clearcoat:1,transparent:true});
+const likes=[];
+for(let i=0;i<7;i++){const m=new THREE.Mesh(heartGeo,likeMat.clone());m.userData.t0=i/7;main.grp.add(m);likes.push(m)}
+
+// soft floor shadow
+const sh=document.createElement('canvas'); sh.width=sh.height=256; const sx=sh.getContext('2d');
+const sg=sx.createRadialGradient(128,128,0,128,128,128); sg.addColorStop(0,'rgba(14,16,21,.28)'); sg.addColorStop(1,'rgba(14,16,21,0)'); sx.fillStyle=sg; sx.fillRect(0,0,256,256);
+const shadow=new THREE.Mesh(new THREE.PlaneGeometry(6,6),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sh),transparent:true,depthWrite:false}));
+shadow.rotation.x=-Math.PI/2; shadow.position.y=-3.5; shadow.scale.set(1,.5,1); root.add(shadow);
+
+let mobileView=false,mx=0,my=0,tx=0,ty=0,drag=false,lastX=0,spinV=0,spin=0;
+addEventListener('pointermove',e=>{tx=e.clientX/innerWidth*2-1;ty=e.clientY/innerHeight*2-1; if(drag){spinV=(e.clientX-lastX)*.01;lastX=e.clientX}});
+canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX});
+addEventListener('pointerup',()=>drag=false);
+
+function resize(){
+  const w=canvas.clientWidth,h=canvas.clientHeight; renderer.setSize(w,h,false); camera.aspect=w/h;
+  const mobile=w<820; mobileView=mobile;
+  const halfW=Math.tan(THREE.MathUtils.degToRad(16))*14*camera.aspect;
+  root.position.set(mobile?0:halfW*.5,mobile?0.1:0,0);
+  root.scale.setScalar(mobile?.68:Math.min(.95,halfW/6.6));
+  camera.updateProjectionMatrix();
+}
+addEventListener('resize',resize); resize();
+document.fonts?.ready.then(()=>{main.paint(0);left.paint(2);right.paint(4)});
+
+let visible=true;
+new IntersectionObserver(([e])=>visible=e.isIntersecting).observe(canvas);
+const clock=new THREE.Clock(); let lastPaint=0;
+function tick(){
+  requestAnimationFrame(tick);
+  if(!visible) return;
+  const t=clock.getElapsedTime();
+  if(t-lastPaint>1/30){ main.paint(t); if(!reduce){ left.paint(t+2); right.paint(t+4); } lastPaint=t; }
+  mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+  spin+=spinV; spinV*=.94; spin*=.985; // drag spins it, then it settles back to face you
+  main.grp.rotation.y=-.28+spin+mx*.45+(reduce?0:Math.sin(t*.5)*.12);
+  main.grp.rotation.x=my*.2+Math.sin(t*.7)*.04;
+  main.grp.rotation.z=.04;
+  main.grp.position.y=Math.sin(t*1.1)*.14;
+  left.grp.position.y=-.7+Math.sin(t*.9+1)*.12; right.grp.position.y=.7+Math.sin(t*.8+2)*.12;
+  likes.forEach(l=>{const p=((t*.28+l.userData.t0)%1);l.position.set(1.05+Math.sin(p*9+l.userData.t0*6)*.25,-.9+p*3.4,.35);l.scale.setScalar(.28*(p<.15?p/.15:1));l.material.opacity=1-p;l.rotation.z=Math.sin(p*6)*.3});
+  bits.forEach(b=>{const u=b.userData,a=u.a+t*u.s*.25;
+    b.position.set(Math.cos(a)*u.r*(mobileView?1:.8),u.y+Math.sin(t*u.s*3+u.sp)*.35,Math.sin(a)*u.r*.6-1.2);
+    b.rotation.y+=u.rot.y*.012; if(!u.coin) b.rotation.x+=u.rot.x*.01; else b.rotation.z+=u.rot.x*.01;});
+  root.rotation.y=mx*.1; root.rotation.x=my*.05;
+  const sc=Math.min(1,scrollY/innerHeight);
+  camera.position.y=-sc*1.5; camera.position.z=14+sc*3;
+  renderer.render(scene,camera);
+}
+tick();
+</script>
+</body>
+</html>
