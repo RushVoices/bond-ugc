@@ -23,6 +23,7 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;overflow-x:clip}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -187,84 +188,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 @media (max-width:960px){.launch{grid-template-columns:1fr}.preview-wrap{position:relative;top:0;order:-1}}
 @media (max-width:520px){.row{grid-template-columns:1fr}}
 
-/* campaigns */
-.tabs{display:flex;scrollbar-width:none;gap:6px;padding:5px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto;max-width:100%}
-.tab{padding:9px 16px;border-radius:999px;border:0;background:transparent;font-size:.9rem;font-weight:500;color:var(--ink-2);white-space:nowrap}
-.tab[aria-selected=true]{background:var(--ink);color:#fff}
-.camps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1200px}
-.camp{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .4s var(--ease);display:flex;flex-direction:column;gap:16px}
-.camp:hover{box-shadow:var(--shadow-lg)}
-.camp-top{display:flex;align-items:center;gap:12px;transform:translateZ(24px)}
-.camp-av{width:46px;height:46px;border-radius:14px;flex:none;display:grid;place-items:center;font-weight:900;color:#fff;font-size:1.05rem;box-shadow:inset 0 -6px 12px rgba(0,0,0,.18),inset 0 2px 3px rgba(255,255,255,.4)}
-.camp-top h3{font-size:1.15rem;letter-spacing:-.03em;line-height:1.1}
-.camp-top .mono{font-size:.7rem}
 .badge{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);white-space:nowrap}
 .badge.live{color:var(--good);border-color:rgba(18,162,107,.25);background:rgba(18,162,107,.07)}
-.camp p{margin:0;color:var(--ink-2);font-size:.92rem;transform:translateZ(14px)}
-.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:translateZ(18px)}
-.kv div{background:var(--bg);border-radius:12px;padding:10px 12px}
-.kv small{display:block;color:var(--mute);font-size:.7rem}
-.kv b{font-size:.98rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.prog{transform:translateZ(14px)}
-.prog .bar{height:6px;border-radius:3px;background:var(--bg-2);overflow:hidden;margin-top:7px}
-.prog .bar i{display:block;height:100%;background:linear-gradient(90deg,#0E1015,#7f8591);border-radius:3px}
-.prog .lbl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mute)}
-.camp .btn{width:100%;transform:translateZ(20px)}
-.plats{display:flex;gap:6px}
-.plat{font-size:.72rem;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
-@media (max-width:1000px){.camps{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.camps{grid-template-columns:1fr}}
-
-/* creators */
-.creators{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.cr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.cr:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.cr-cover{height:150px;position:relative;overflow:hidden}
-.cr-cover canvas{width:100%;height:100%;display:block}
-.cr-av{position:absolute;left:18px;top:118px;width:62px;height:62px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-weight:800;color:#fff;font-size:1.2rem;box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
-.cr-body{padding:40px 18px 18px}
-.cr-body h3{font-size:1.1rem;letter-spacing:-.03em}
-.cr-body .mono{font-size:.68rem;margin-top:4px;display:block}
-.cr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:16px 0}
-.cr-stats div{text-align:center;background:var(--bg);border-radius:10px;padding:8px 4px}
-.cr-stats b{display:block;font-size:.95rem;letter-spacing:-.02em}
-.cr-stats small{font-size:.66rem;color:var(--mute)}
-.cr .btn{width:100%;padding:10px}
-.cr .btn.sent{background:var(--ink);color:#fff}
-@media (max-width:1050px){.creators{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.creators{grid-template-columns:1fr}}
-
-/* calculator */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
-.calc-out{background:linear-gradient(160deg,#16181f,#0E1015 60%,#262a33);color:#fff;border-radius:var(--r);padding:clamp(24px,3vw,38px);position:relative;overflow:hidden;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:22px}
-.calc-out::before{content:"";position:absolute;width:420px;height:420px;right:-140px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%)}
-.calc-out .mono{color:#9aa0ab}
-.big{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
-.calc-rows{display:grid;gap:10px;margin-top:auto}
-.calc-rows div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:.95rem}
-.calc-rows b{font-variant-numeric:tabular-nums}
-.out-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.out-row b{font-family:var(--mono);font-size:.95rem}
-@media (max-width:900px){.calc{grid-template-columns:1fr}}
-
-/* faq */
-.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
-details{border-bottom:1px solid var(--line-2);padding:22px 0}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-weight:600;font-size:1.1rem;letter-spacing:-.02em}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-weight:300;font-size:1.6rem;line-height:1;transition:transform .3s var(--ease)}
-details[open] summary::after{transform:rotate(45deg)}
-details p{color:var(--ink-2);margin:12px 0 0;max-width:62ch}
-@media (max-width:900px){.faq{grid-template-columns:1fr}}
-
-/* cta + footer */
-.cta{position:relative;border-radius:34px;overflow:hidden;padding:clamp(50px,9vw,110px) clamp(22px,5vw,70px);background:linear-gradient(160deg,#fff,#e8eaee);border:1px solid #fff;box-shadow:var(--shadow-lg);text-align:center}
-.cta h2{font-size:clamp(2.4rem,7vw,5.6rem);letter-spacing:-.06em}
-.cta .sub{margin-inline:auto}
-.cta .hero-cta{justify-content:center}
-.rings{position:absolute;inset:0;pointer-events:none;perspective:900px}
-.rings i{position:absolute;left:50%;top:50%;border:1px solid rgba(14,16,21,.08);border-radius:50%;transform:translate(-50%,-50%) rotateX(70deg);animation:ring 9s linear infinite}
-@keyframes ring{to{transform:translate(-50%,-50%) rotateX(70deg) rotateZ(360deg)}}
 footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line-2);padding-top:28px}
 .foot nav{display:flex;gap:20px;flex-wrap:wrap}
@@ -283,6 +208,10 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
 .tx li.run .st{border-color:var(--ink);border-top-color:transparent;animation:rot .8s linear infinite}
 .tx li.done{background:#fff}
 .tx li.done .st{background:var(--ink);border-color:var(--ink);color:#fff}
+.tx li.fail{border-color:#e5b4b4;background:#fdf6f6}
+.tx li.fail .st{background:#b42318;border-color:#b42318;color:#fff}
+#mMsg a{color:var(--ink);font-weight:600}
+.mint{font-family:var(--mono);font-size:.78rem;word-break:break-all;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:block;margin-top:8px;cursor:pointer}
 .tx li small{display:block;color:var(--mute);font-size:.78rem}
 @keyframes rot{to{transform:rotate(360deg)}}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);z-index:120;background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-size:.9rem;box-shadow:var(--shadow-lg);transition:transform .45s var(--ease);max-width:calc(100% - 32px);text-align:center}
@@ -310,12 +239,9 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
       <nav class="links" aria-label="Primary">
         <a href="#how">How it works</a>
         <a href="#launch">Launch</a>
-        <a href="#campaigns">Campaigns</a>
-        <a href="#creators">Creators</a>
-        <a href="#faq">FAQ</a>
       </nav>
       <div class="nav-r">
-        <a class="btn" href="#creators">For creators</a>
+        <a class="btn" href="#launch">Launch</a>
         <button class="btn dark" id="walletBtn">Connect wallet</button>
       </div>
     </div>
@@ -335,7 +261,7 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
         <div class="hero-cta">
           <a class="btn dark lg" href="#launch">Launch a coin
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          <a class="btn lg" href="#campaigns">Browse campaigns</a>
+          <a class="btn lg" href="#how">How it works</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><b>0</b><span>coins launched</span></div>
@@ -367,19 +293,19 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
           <div class="art"><div class="cube"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
           <span class="n">01</span>
           <h3>Launch on pump.fun</h3>
-          <p>Name, ticker, image. Bond creates the coin on pump.fun's bonding curve in one wallet approval.</p>
+          <p>Name, ticker, image. Bond uploads it and creates your coin on pump.fun's bonding curve in one wallet approval.</p>
         </article>
         <article class="step reveal tilt" style="transition-delay:.08s">
           <div class="art"><div class="flow"><div class="coin3">B</div><div class="pipe"></div><div class="vault"><i></i><i></i><i></i></div></div></div>
           <span class="n">02</span>
           <h3>Route the fees</h3>
-          <p>Pick a split: marketing, UGC creators, and you. Creator fees flow into an on-chain campaign vault as the coin trades.</p>
+          <p>Every trade on your coin pays creator fees to your wallet. Set how much of them goes to marketing and UGC creators.</p>
         </article>
         <article class="step reveal tilt" style="transition-delay:.16s">
           <div class="art"><div class="phones"><div class="phone"></div><div class="phone"></div><div class="phone"></div></div></div>
           <span class="n">03</span>
           <h3>Creators get paid</h3>
-          <p>TikTok, X and YouTube creators join your campaign, post, and get paid per verified view from the vault.</p>
+          <p>TikTok, X and YouTube creators post about your coin and get paid per view from your campaign budget.</p>
         </article>
       </div>
     </div>
@@ -405,15 +331,21 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
           <div class="field">
             <label for="fImg">Image</label>
             <label class="drop" for="fImg"><span class="thumb" id="thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span><span><b style="font-weight:600">Upload image</b><br><span class="hint">PNG, JPG or GIF</span></span></label>
-            <input type="file" id="fImg" accept="image/*" hidden>
+            <input type="file" id="fImg" accept="image/png,image/jpeg,image/gif,image/webp" hidden>
           </div>
+          <div class="row">
+            <div class="field"><label for="fX">X / Twitter <span class="hint">(optional)</span></label><input class="input" id="fX" placeholder="https://x.com/yourcoin"></div>
+            <div class="field"><label for="fTg">Telegram <span class="hint">(optional)</span></label><input class="input" id="fTg" placeholder="https://t.me/yourcoin"></div>
+          </div>
+          <div class="field"><label for="fWeb">Website <span class="hint">(optional)</span></label><input class="input" id="fWeb" placeholder="https://yourcoin.xyz"></div>
 
           <div class="split">
-            <div class="out-row"><label style="font-weight:600;font-size:.85rem;color:var(--ink-2)">Creator fee split</label><span class="mono">must total 100%</span></div>
+            <div class="out-row"><label style="font-weight:600;font-size:.85rem;color:var(--ink-2)">Creator fee plan</label><span class="mono">must total 100%</span></div>
             <div class="split-bar" aria-hidden="true"><span class="s1" id="b1"></span><span class="s2" id="b2"></span><span class="s3" id="b3"></span></div>
             <div class="sl"><i style="background:#0E1015"></i><span>UGC creator campaigns<br><input type="range" id="r1" min="0" max="100" value="50" aria-label="UGC creator campaigns share"></span><b id="v1">50%</b></div>
             <div class="sl"><i style="background:#9aa0aa"></i><span>Marketing (ads, KOLs, raids)<br><input type="range" id="r2" min="0" max="100" value="30" aria-label="Marketing share"></span><b id="v2">30%</b></div>
             <div class="sl"><i style="background:#dcdfe4;border:1px solid var(--line-2)"></i><span>You (dev wallet)</span><b id="v3">20%</b></div>
+            <p class="note" style="margin-top:4px">pump.fun pays creator fees to the wallet that launches the coin. This plan is how you'll split them.</p>
           </div>
 
           <div class="field">
@@ -428,11 +360,11 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
           </div>
           <div class="row">
             <div class="field"><label for="fCpm">Pay per 1,000 views</label><input class="input" id="fCpm" type="number" min="0.001" step="0.001" value="0.02"><span class="hint">in SOL</span></div>
-            <div class="field"><label for="fBuy">Dev buy (optional)</label><input class="input" id="fBuy" type="number" min="0" step="0.1" value="0.5"><span class="hint">in SOL</span></div>
+            <div class="field"><label for="fBuy">Dev buy (optional)</label><input class="input" id="fBuy" type="number" min="0" step="0.01" value="0"><span class="hint">in SOL</span></div>
           </div>
           <button class="btn dark lg" style="width:100%;margin-top:6px" type="submit">Launch on pump.fun
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-          <p class="note">Demo: launching here simulates the flow and sends no transactions.</p>
+          <p class="note" id="launchNote">Launches a real coin on Solana mainnet. You need about 0.03 SOL for network costs, plus your dev buy.</p>
         </form>
 
         <div class="preview-wrap reveal">
@@ -463,233 +395,46 @@ footer{padding:60px 0 40px;color:var(--mute);font-size:.88rem}
     </div>
   </section>
 
-  <!-- CAMPAIGNS -->
-  <section class="sec" id="campaigns" style="background:#fff;border-block:1px solid var(--line)">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <span class="eyebrow">Live campaigns</span>
-          <h2 class="h2">Get paid to post.</h2>
-          <p class="sub">Example campaigns. Real ones show up here as coins launch on Bond.</p>
-        </div>
-        <div class="tabs" role="tablist" id="campTabs">
-          <button class="tab" role="tab" aria-selected="true" data-f="all">All</button>
-          <button class="tab" role="tab" aria-selected="false" data-f="TikTok">TikTok</button>
-          <button class="tab" role="tab" aria-selected="false" data-f="X">X</button>
-          <button class="tab" role="tab" aria-selected="false" data-f="YouTube">YouTube</button>
-          <button class="tab" role="tab" aria-selected="false" data-f="hot">Biggest budget</button>
-        </div>
-      </div>
-      <div class="camps" id="camps"></div>
-    </div>
-  </section>
-
-  <!-- CREATORS -->
-  <section class="sec" id="creators">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <span class="eyebrow">Creator marketplace</span>
-          <h2 class="h2">Find the creators<br>who move markets.</h2>
-        </div>
-        <p class="sub" style="margin:0">Browse verified UGC creators by platform, reach and price. Invite them straight into your campaign. The profiles below are examples.</p>
-      </div>
-      <div class="creators" id="creatorsGrid"></div>
-    </div>
-  </section>
-
-  <!-- CALCULATOR -->
-  <section class="sec" id="calc" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div>
-          <span class="eyebrow">Budget calculator</span>
-          <h2 class="h2">What could your<br>coin fund?</h2>
-        </div>
-      </div>
-      <div class="calc">
-        <div class="panel reveal">
-          <div class="field">
-            <div class="out-row"><label for="cVol">Daily trading volume</label><b id="cVolV">$250,000</b></div>
-            <input type="range" id="cVol" min="10000" max="5000000" step="10000" value="250000">
-          </div>
-          <div class="field">
-            <div class="out-row"><label for="cFee">Creator fee rate</label><b id="cFeeV">0.30%</b></div>
-            <input type="range" id="cFee" min="0.05" max="1" step="0.05" value="0.3">
-            <span class="hint">pump.fun sets the creator fee rate and it can change, so check the current rate.</span>
-          </div>
-          <div class="field">
-            <div class="out-row"><label for="cUgc">Share for UGC + marketing</label><b id="cUgcV">80%</b></div>
-            <input type="range" id="cUgc" min="0" max="100" step="5" value="80">
-          </div>
-          <div class="field" style="margin:0">
-            <div class="out-row"><label for="cCpm">Pay per 1,000 views (USD)</label><b id="cCpmV">$3.00</b></div>
-            <input type="range" id="cCpm" min="0.5" max="15" step="0.5" value="3">
-          </div>
-        </div>
-        <div class="calc-out reveal">
-          <div><span class="mono">Monthly campaign budget</span><div class="big" id="cOut">$0</div></div>
-          <div class="calc-rows">
-            <div><span>Creator fees / day</span><b id="cDay">$0</b></div>
-            <div><span>Views funded / month</span><b id="cViews">0</b></div>
-            <div><span>~ creator videos at 50k views</span><b id="cVids">0</b></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="sec" id="faq" style="padding-top:0">
-    <div class="wrap faq">
-      <div class="reveal">
-        <span class="eyebrow">FAQ</span>
-        <h2 class="h2" style="margin-top:22px">Questions,<br>answered.</h2>
-      </div>
-      <div class="reveal">
-        <details open><summary>Where does the campaign money come from?</summary><p>From your coin's pump.fun creator fees. Every buy and sell pays a small creator fee. At launch, Bond points that fee at a campaign vault, split the way you choose between UGC creators, marketing, and your own wallet.</p></details>
-        <details><summary>How do creators get paid?</summary><p>Creators join a campaign, post with your coin's tag or link, and submit the post. Views are verified, then the vault pays out at the rate you set per 1,000 views, in SOL, straight to their wallet.</p></details>
-        <details><summary>Can I change the split later?</summary><p>You set the split at launch. Locking it means holders and creators can trust the budget will be there, and it's what makes a Bond coin different from a dev wallet promising to "do marketing".</p></details>
-        <details><summary>What if the coin graduates from the bonding curve?</summary><p>Campaigns keep running. Creator fees keep flowing into the vault after graduation, and so do creator payouts.</p></details>
-        <details><summary>I'm a creator. How do I join?</summary><p>Connect a wallet, link your TikTok, X or YouTube account, and browse live campaigns. No follower minimum. You're paid on views, so small accounts that go viral earn the same rate as big ones.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="sec" style="padding-top:0">
-    <div class="wrap">
-      <div class="cta reveal">
-        <div class="rings" aria-hidden="true"><i style="width:340px;height:340px"></i><i style="width:560px;height:560px;animation-duration:14s"></i><i style="width:820px;height:820px;animation-duration:22s;animation-direction:reverse"></i><i style="width:1100px;height:1100px;animation-duration:30s"></i></div>
-        <div style="position:relative">
-          <span class="eyebrow"><span class="dot"></span>Ready when you are</span>
-          <h2 style="margin-top:24px">Launch it. <span class="chrome-text">Bond it.</span></h2>
-          <p class="sub">The coin that pays creators to talk about it. One approval to launch.</p>
-          <div class="hero-cta">
-            <a class="btn dark lg" href="#launch">Launch a coin</a>
-            <a class="btn lg" href="#campaigns">Join as a creator</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
   <div class="wrap foot">
     <a href="#top" class="brand" style="color:var(--ink)"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#bond-mark"/></svg>Bond</a>
-    <nav><a href="#how">How it works</a><a href="#launch">Launch</a><a href="#campaigns">Campaigns</a><a href="#creators">Creators</a><a href="#faq">FAQ</a></nav>
+    <nav><a href="#how">How it works</a><a href="#launch">Launch</a></nav>
     <span>© 2026 Bond · Built on Solana. Not affiliated with pump.fun.</span>
   </div>
 </footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="sheet">
-    <span class="mono">Demo launch</span>
-    <h3 id="mTitle" style="margin-top:8px">Launching $BCAT</h3>
+    <span class="mono">pump.fun · Solana mainnet</span>
+    <h3 id="mTitle" style="margin-top:8px">Launching</h3>
     <ul class="tx" id="txList" style="padding:0">
-      <li><span class="st"></span><div>Create coin on pump.fun<small>Bonding curve + dev buy</small></div></li>
-      <li><span class="st"></span><div>Point creator fees at the campaign vault<small>Locks your split</small></div></li>
-      <li><span class="st"></span><div>Open the UGC campaign<small>Listed on Bond for creators</small></div></li>
+      <li data-step="wallet"><span class="st"></span><div>Connect wallet<small>Phantom, Solflare or Backpack</small></div></li>
+      <li data-step="upload"><span class="st"></span><div>Upload image and details<small>Stored on IPFS</small></div></li>
+      <li data-step="build"><span class="st"></span><div>Build and check the transaction<small>Simulated before you sign</small></div></li>
+      <li data-step="sign"><span class="st"></span><div>Approve in your wallet<small>One approval</small></div></li>
+      <li data-step="confirm"><span class="st"></span><div>Confirm on Solana<small>Usually under 30 seconds</small></div></li>
     </ul>
-    <div style="display:flex;gap:10px">
+    <p class="note" id="mMsg" role="status" style="margin:-8px 0 16px"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
       <button class="btn" id="mClose" style="flex:1">Close</button>
-      <a class="btn dark" id="mView" href="#campaigns" style="flex:1;display:none">View campaign</a>
+      <a class="btn dark" id="mView" target="_blank" rel="noopener" style="flex:1" hidden>View on pump.fun</a>
     </div>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// ---------- data (demo) ----------
-const PAL=[['#0E1015','#4a505c'],['#6b7280','#c3c7ce'],['#1f2937','#9ca3af'],['#374151','#d1d5db'],['#111827','#6b7280'],['#4b5563','#e5e7eb']];
-const camps=[
-  {n:'Bond Cat',t:'BCAT',d:'Skits with a cat that pays rent in memecoins. Funny > polished.',b:84.2,cpm:.02,used:61,pl:['TikTok','X'],c:212},
-  {n:'Gigachad Labs',t:'LABS',d:'Gym-floor POV clips. Mention $LABS and show the chart.',b:146.5,cpm:.03,used:38,pl:['TikTok','YouTube'],c:341},
-  {n:'Moonrock',t:'ROCK',d:'Reaction videos to the chart going vertical. Duets welcome.',b:39.8,cpm:.015,used:72,pl:['X'],c:97},
-  {n:'Snack Index',t:'SNAX',d:'Review a snack, rate it in $SNAX. Weirder snacks pay the same.',b:62.1,cpm:.02,used:24,pl:['TikTok','YouTube'],c:158},
-  {n:'Pixel Pope',t:'POPE',d:'Pixel-art edits and memes. Best edits get pinned on the coin page.',b:21.4,cpm:.01,used:88,pl:['X','TikTok'],c:64},
-  {n:'Night Shift',t:'SHIFT',d:'3am grindset vlogs. Show your setup, end on the ticker.',b:103.9,cpm:.025,used:45,pl:['YouTube','X'],c:233},
-];
-const creators=[
-  {h:'@lunaclips',n:'Luna Park',p:'TikTok',f:'412K',v:'88K',r:'◎0.6'},
-  {h:'@degenjoe',n:'Joe Marsh',p:'X',f:'96K',v:'31K',r:'◎0.3'},
-  {h:'@chartgirl',n:'Mira Chen',p:'YouTube',f:'1.2M',v:'240K',r:'◎2.1'},
-  {h:'@okaysam',n:'Sam Okafor',p:'TikTok',f:'58K',v:'44K',r:'◎0.25'},
-  {h:'@pixelpriest',n:'Theo Vance',p:'X',f:'210K',v:'52K',r:'◎0.5'},
-  {h:'@skitszn',n:'Ava Torres',p:'TikTok',f:'860K',v:'190K',r:'◎1.4'},
-  {h:'@solsunday',n:'Kai Brooks',p:'YouTube',f:'134K',v:'36K',r:'◎0.4'},
-  {h:'@memeplug',n:'Rin Sato',p:'Instagram',f:'305K',v:'71K',r:'◎0.55'},
-];
-const initials=s=>s.replace(/[^A-Za-z ]/g,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-const grad=i=>`linear-gradient(135deg,${PAL[i%PAL.length][0]},${PAL[i%PAL.length][1]})`;
 const $=s=>document.querySelector(s);
 
 // ---------- ticker ----------
 (function(){
-  const items=[['Launch','on pump.fun in one approval'],['Fees','fund your marketing'],['Creators','paid per verified view'],['Post','on TikTok, X, YouTube and Reels'],['Split','locked at launch'],['Built','on Solana']];
+  const items=[['Launch','on pump.fun in one approval'],['Fees','fund your marketing'],['Creators','paid per verified view'],['Post','on TikTok, X, YouTube and Reels'],['Creator fees','paid to your wallet'],['Built','on Solana']];
   let h='';
   for(let k=0;k<4;k++) items.forEach(([b,t])=>{h+=`<div class="tick"><svg class="av" viewBox="0 0 64 64"><use href="#bond-mark"/></svg><b>${b}</b> ${t}</div>`});
   $('#ticker').innerHTML=h;
 })();
-
-// ---------- campaigns ----------
-function renderCamps(f){
-  let list=camps.map((c,i)=>({...c,i}));
-  if(f==='hot') list.sort((a,b)=>b.b-a.b);
-  else if(f!=='all') list=list.filter(c=>c.pl.includes(f));
-  $('#camps').innerHTML=list.map(c=>`
-    <article class="camp tilt">
-      <div class="camp-top"><div class="camp-av" style="background:${grad(c.i)}">${initials(c.n)}</div>
-        <div><h3>${c.n}</h3><span class="mono">$${c.t} · ${c.c} creators</span></div>
-        <span class="badge">Example</span></div>
-      <p>${c.d}</p>
-      <div class="kv"><div><small>Budget</small><b>◎${c.b}</b></div><div><small>Per 1k views</small><b>◎${c.cpm}</b></div><div><small>Left</small><b>◎${(c.b*(100-c.used)/100).toFixed(1)}</b></div></div>
-      <div class="prog"><div class="lbl"><span>Budget used</span><span>${c.used}%</span></div><div class="bar"><i style="width:${c.used}%"></i></div></div>
-      <div class="plats">${c.pl.map(p=>`<span class="plat">${p}</span>`).join('')}</div>
-      <button class="btn join" data-t="${c.t}">Join campaign</button>
-    </article>`).join('')||'<p class="sub">No campaigns on this platform yet.</p>';
-  bindTilt('#camps .tilt',8);
-}
-$('#campTabs').addEventListener('click',e=>{
-  const b=e.target.closest('.tab'); if(!b) return;
-  document.querySelectorAll('#campTabs .tab').forEach(t=>t.setAttribute('aria-selected',t===b));
-  renderCamps(b.dataset.f);
-});
-$('#camps').addEventListener('click',e=>{
-  const b=e.target.closest('.join'); if(!b) return;
-  b.textContent='Joined ✓'; b.classList.add('dark'); toast(`You joined the $${b.dataset.t} campaign (demo)`);
-});
-renderCamps('all');
-
-// ---------- creators ----------
-$('#creatorsGrid').innerHTML=creators.map((c,i)=>`
-  <article class="cr reveal" style="transition-delay:${(i%4)*.06}s">
-    <div class="cr-cover"><canvas data-seed="${i}"></canvas></div>
-    <div class="cr-av" style="background:${grad(i)}">${initials(c.n)}</div>
-    <div class="cr-body">
-      <h3>${c.n}</h3><span class="mono">${c.h} · ${c.p}</span>
-      <div class="cr-stats"><div><b>${c.f}</b><small>followers</small></div><div><b>${c.v}</b><small>avg views</small></div><div><b>${c.r}</b><small>per post</small></div></div>
-      <button class="btn invite">Invite to campaign</button>
-    </div>
-  </article>`).join('');
-$('#creatorsGrid').addEventListener('click',e=>{
-  const b=e.target.closest('.invite'); if(!b||b.classList.contains('sent')) return;
-  b.textContent='Invite sent ✓'; b.classList.add('sent'); toast('Invite sent (demo)');
-});
-// generative chrome covers
-document.querySelectorAll('.cr-cover canvas').forEach(cv=>{
-  const s=+cv.dataset.seed, w=cv.width=600, h=cv.height=300, x=cv.getContext('2d');
-  const g=x.createLinearGradient(0,0,w,h); g.addColorStop(0,'#fbfbfc'); g.addColorStop(1,'#d9dce1'); x.fillStyle=g; x.fillRect(0,0,w,h);
-  let r=s*9301+49297; const rnd=()=>((r=(r*9301+49297)%233280)/233280);
-  for(let k=0;k<7;k++){
-    const cx=rnd()*w, cy=rnd()*h, rad=40+rnd()*140;
-    const rg=x.createRadialGradient(cx-rad*.3,cy-rad*.3,rad*.1,cx,cy,rad);
-    rg.addColorStop(0,'rgba(255,255,255,.95)'); rg.addColorStop(.6,`rgba(${150+rnd()*60|0},${155+rnd()*60|0},${165+rnd()*60|0},.55)`); rg.addColorStop(1,'rgba(120,125,135,0)');
-    x.fillStyle=rg; x.beginPath(); x.arc(cx,cy,rad,0,7); x.fill();
-  }
-  x.strokeStyle='rgba(14,16,21,.08)'; for(let k=0;k<w;k+=24){x.beginPath();x.moveTo(k,0);x.lineTo(k-h*.6,h);x.stroke();}
-});
 
 // ---------- tilt ----------
 function bindTilt(sel,max){
@@ -737,45 +482,144 @@ $('#platChips').addEventListener('click',e=>{
   $('#pPlat').textContent=on.length?on.slice(0,2).join(', ')+(on.length>2?` +${on.length-2}`:''):'None';
 });
 
+// ---------- real launch on pump.fun ----------
+const RPC_URL=new URL('api/rpc',location.href).href;   // see api/rpc.js; set SOLANA_RPC_URL on Vercel for a faster RPC
+const WEB3_SRC='https://cdn.jsdelivr.net/npm/@solana/web3.js@1.98.0/lib/index.iife.min.js';
+const NETWORK_COST=0.03; // SOL: mint + account rent, priority fee, tx fees (with margin)
 const modal=$('#modal');
-$('#launchForm').addEventListener('submit',e=>{
+let wallet=null, walletKey=null, launching=false;
+
+function getProvider(){
+  const w=window;
+  return w.phantom?.solana?.isPhantom?w.phantom.solana : w.solflare?.isSolflare?w.solflare : w.backpack?.isBackpack?w.backpack : w.solana||null;
+}
+async function connectWallet(){
+  const p=getProvider();
+  if(!p) throw new Error('No Solana wallet found. Install Phantom, Solflare or Backpack, then reload this page.');
+  const r=await p.connect();
+  const key=(r&&r.publicKey)||p.publicKey;
+  if(!key) throw new Error('The wallet did not share an address.');
+  wallet=p; walletKey=key.toString();
+  $('#walletBtn').textContent=walletKey.slice(0,4)+'…'+walletKey.slice(-4);
+  return walletKey;
+}
+let web3P;
+function loadWeb3(){
+  if(window.solanaWeb3) return Promise.resolve(window.solanaWeb3);
+  return web3P||=new Promise((ok,no)=>{const s=document.createElement('script');s.src=WEB3_SRC;s.onload=()=>ok(window.solanaWeb3);s.onerror=()=>{web3P=null;no(new Error('Could not load the Solana library. Check your connection and try again.'))};document.head.appendChild(s)});
+}
+async function uploadMetadata(f){
+  const fd=new FormData();
+  fd.append('file',f.image);
+  fd.append('name',f.name); fd.append('symbol',f.symbol); fd.append('description',f.description);
+  fd.append('twitter',f.twitter); fd.append('telegram',f.telegram); fd.append('website',f.website); fd.append('showName','true');
+  let r;
+  try{ r=await fetch(new URL('api/ipfs',location.href),{method:'POST',body:fd}); }
+  catch{ r=null; }
+  if(!r||r.status===404||r.status===405){
+    throw new Error('The upload service isn’t running here. Launches work on the Vercel deployment of this site (see the README), not on GitHub Pages or inside a preview.');
+  }
+  if(!r.ok) throw new Error('Upload failed ('+r.status+'): '+esc((await r.text()).slice(0,160)));
+  const j=await r.json();
+  if(!j.metadataUri) throw new Error('Upload returned no metadata link. Try again.');
+  return j.metadataUri;
+}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function setStep(name,state){
+  const li=document.querySelector(`#txList li[data-step="${name}"]`); if(!li) return;
+  li.className=state; li.querySelector('.st').textContent=state==='done'?'✓':state==='fail'?'✕':'';
+}
+function msg(html){$('#mMsg').innerHTML=html}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function cleanUrl(v){v=v.trim(); if(!v) return ''; if(!/^https?:\/\//i.test(v)) v='https://'+v; try{return new URL(v).href}catch{return ''}}
+
+$('#launchForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const tk=($('#fTicker').value||'BCAT').toUpperCase();
-  $('#mTitle').textContent=`Launching $${tk}`;
-  const items=[...document.querySelectorAll('#txList li')];
-  items.forEach(li=>{li.className='';li.querySelector('.st').textContent=''});
-  $('#mView').style.display='none'; modal.classList.add('open');
-  items.forEach((li,i)=>{
-    setTimeout(()=>li.className='run',i*1300+200);
-    setTimeout(()=>{li.className='done';li.querySelector('.st').textContent='✓';
-      if(i===items.length-1){$('#mTitle').textContent=`$${tk} is live`;$('#mView').style.display='inline-flex';}
-    },i*1300+1300);
-  });
+  if(launching) return;
+  const image=$('#fImg').files[0];
+  const f={
+    name:$('#fName').value.trim(), symbol:$('#fTicker').value.trim().toUpperCase(),
+    description:$('#fDesc').value.trim(), image,
+    twitter:cleanUrl($('#fX').value), telegram:cleanUrl($('#fTg').value), website:cleanUrl($('#fWeb').value),
+    devBuy:Math.max(0,parseFloat($('#fBuy').value)||0),
+  };
+  if(!f.name||!f.symbol){toast('Add a coin name and ticker.');return}
+  if(!image){toast('Add an image for your coin.');$('#fImg').click();return}
+  if(image.size>4e6){toast('Image is over 4 MB. Use a smaller file.');return}
+
+  launching=true;
+  $('#mTitle').textContent=`Launching $${f.symbol}`;
+  document.querySelectorAll('#txList li').forEach(li=>{li.className='';li.querySelector('.st').textContent=''});
+  $('#mView').hidden=true; msg(''); modal.classList.add('open');
+  let step='wallet';
+  try{
+    setStep('wallet','run');
+    const [web3]=await Promise.all([loadWeb3(), walletKey?walletKey:connectWallet()]);
+    const conn=new web3.Connection(RPC_URL,'confirmed');
+    const owner=new web3.PublicKey(walletKey);
+    const bal=(await conn.getBalance(owner))/web3.LAMPORTS_PER_SOL;
+    const need=f.devBuy+NETWORK_COST;
+    if(bal<need) throw new Error(`This wallet has ${bal.toFixed(4)} SOL. Launching${f.devBuy?` with a ${f.devBuy} SOL dev buy`:''} needs about ${need.toFixed(3)} SOL. Add SOL to ${walletKey.slice(0,4)}…${walletKey.slice(-4)} and try again.`);
+    setStep('wallet','done');
+
+    step='upload'; setStep('upload','run');
+    const uri=await uploadMetadata(f);
+    setStep('upload','done');
+
+    step='build'; setStep('build','run');
+    const mint=web3.Keypair.generate();
+    const r=await fetch('https://pumpportal.fun/api/trade-local',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      publicKey:walletKey, action:'create', tokenMetadata:{name:f.name,symbol:f.symbol,uri},
+      mint:mint.publicKey.toBase58(), denominatedInSol:'true', amount:f.devBuy, slippage:10, priorityFee:0.0005, pool:'pump'})});
+    if(!r.ok) throw new Error('Could not build the launch transaction ('+r.status+'): '+esc((await r.text()).slice(0,160)));
+    const tx=web3.VersionedTransaction.deserialize(new Uint8Array(await r.arrayBuffer()));
+    const sim=await conn.simulateTransaction(tx,{sigVerify:false,replaceRecentBlockhash:true});
+    if(sim.value.err){
+      const log=(sim.value.logs||[]).filter(l=>/error|failed|insufficient/i.test(l)).slice(-2).join(' ');
+      throw new Error('The launch would fail on-chain, so nothing was sent. '+esc(log||JSON.stringify(sim.value.err)));
+    }
+    setStep('build','done');
+
+    step='sign'; setStep('sign','run'); msg('Check your wallet and approve the transaction.');
+    const signed=await wallet.signTransaction(tx);   // wallet signs first…
+    signed.sign([mint]);                             // …then the new coin's mint key
+    setStep('sign','done'); msg('');
+
+    step='confirm'; setStep('confirm','run');
+    const raw=signed.serialize();
+    const sig=await conn.sendRawTransaction(raw,{skipPreflight:true,maxRetries:0});
+    const scan=`https://solscan.io/tx/${sig}`;
+    msg(`Sent. <a href="${scan}" target="_blank" rel="noopener">Track it on Solscan</a>`);
+    let ok=false;
+    for(let i=0;i<40&&!ok;i++){
+      await sleep(2000);
+      const st=(await conn.getSignatureStatuses([sig])).value[0];
+      if(st?.err) throw new Error('The transaction failed on-chain: '+JSON.stringify(st.err)+`. <a href="${scan}" target="_blank" rel="noopener">See it on Solscan</a>`);
+      if(st&&(st.confirmationStatus==='confirmed'||st.confirmationStatus==='finalized')) ok=true;
+      else if(i%2===1) conn.sendRawTransaction(raw,{skipPreflight:true,maxRetries:0}).catch(()=>{});
+    }
+    if(!ok) throw new Error(`Not confirmed yet. The network may be busy. <a href="${scan}" target="_blank" rel="noopener">Check Solscan</a> before trying again so you don't launch twice.`);
+    setStep('confirm','done');
+
+    const ca=mint.publicKey.toBase58(), url=`https://pump.fun/coin/${ca}`;
+    $('#mTitle').textContent=`$${f.symbol} is live`;
+    $('#mView').href=url; $('#mView').hidden=false;
+    msg(`Your coin is on pump.fun. Contract address (tap to copy):<span class="mint" id="mintCa">${ca}</span><a href="${scan}" target="_blank" rel="noopener">View transaction</a>`);
+    $('#mintCa').onclick=()=>{navigator.clipboard?.writeText(ca).then(()=>toast('Address copied'),()=>{})};
+  }catch(err){
+    const m=err?.message?String(err.message):esc(String(err));
+    setStep(step,'fail');
+    msg(/reject|declin|cancel|denied/i.test(m)?'You cancelled in your wallet. Nothing was sent.':m);
+  }finally{ launching=false; }
 });
 $('#mClose').onclick=()=>modal.classList.remove('open');
-$('#mView').onclick=()=>modal.classList.remove('open');
 modal.addEventListener('click',e=>{if(e.target===modal) modal.classList.remove('open')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape') modal.classList.remove('open')});
 
-// ---------- calculator ----------
-const fmt$=n=>'$'+Math.round(n).toLocaleString('en-US');
-function calc(){
-  const vol=+$('#cVol').value, fee=+$('#cFee').value/100, share=+$('#cUgc').value/100, cpm=+$('#cCpm').value;
-  const day=vol*fee, month=day*30*share, views=month/cpm*1000;
-  $('#cVolV').textContent=fmt$(vol); $('#cFeeV').textContent=(fee*100).toFixed(2)+'%';
-  $('#cUgcV').textContent=Math.round(share*100)+'%'; $('#cCpmV').textContent='$'+cpm.toFixed(2);
-  $('#cOut').textContent=fmt$(month); $('#cDay').textContent=fmt$(day);
-  $('#cViews').textContent=views>=1e6?(views/1e6).toFixed(1)+'M':Math.round(views).toLocaleString('en-US');
-  $('#cVids').textContent=Math.floor(views/50000).toLocaleString('en-US');
-}
-['#cVol','#cFee','#cUgc','#cCpm'].forEach(s=>$(s).addEventListener('input',calc)); calc();
-
 // ---------- misc ----------
 let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400)}
-$('#walletBtn').addEventListener('click',async e=>{
-  const p=window.phantom?.solana||window.solana;
-  if(!p){toast('No Solana wallet found. Install Phantom or Solflare.');return}
-  try{const r=await p.connect();const k=r.publicKey.toString();e.target.textContent=k.slice(0,4)+'…'+k.slice(-4)}catch{toast('Wallet connection cancelled')}
+$('#walletBtn').addEventListener('click',async()=>{
+  try{await connectWallet()}catch(err){toast(/reject|cancel|denied/i.test(err.message)?'Wallet connection cancelled':err.message)}
 });
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
